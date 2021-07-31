@@ -1,5 +1,5 @@
 <template>
-    <item v-if="user.about !== ''" title="About">
+    <item v-if="user.about !== ''" title="About" :color="user.settings.color">
         <div style="white-space: pre-line;">{{ user.about}}</div>
     </item>
 </template>

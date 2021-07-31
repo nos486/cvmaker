@@ -1,8 +1,6 @@
 <template>
     <div class="mb-4">
-        <div class="d-flex align-center font-weight-thin">
-          <v-icon left>{{icon}}</v-icon> <b>{{title}}</b>
-        </div>
+        <IconText :icon="icon" :text="title"></IconText>
         <div class="d-flex justify-content-start flex-wrap mt-1">
           <v-chip v-for="(item,index) in list" :key="index" class="mr-1 mb-1" :color="color" label dark draggable>
             {{ item }}
@@ -13,9 +11,11 @@
 </template>
 
 <script>
+import IconText from "@/templates/basic/ui/IconText";
 export default {
     name: "SkillItems",
-    props: {
+  components: {IconText},
+  props: {
         title: {
             type: String,
             default: "Title"

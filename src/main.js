@@ -11,7 +11,7 @@ import "vue-toastification/dist/index.css";
 Vue.config.productionTip = false
 
 
-Vue.use(Toast, {timeout:3000,position:"top-right"});
+Vue.use(Toast, {timeout:3000,position:"top-right",});
 
 new Vue({
   router,

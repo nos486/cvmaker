@@ -1,5 +1,4 @@
-export default class Experience {
-
+export default class Education {
     get id() {
         return this._id;
     }
@@ -7,27 +6,29 @@ export default class Experience {
     set id(value) {
         this._id = value;
     }
-    get icon() {
-        return this._icon;
+
+    get school() {
+        return this._school;
     }
 
-    set icon(value) {
-        this._icon = value;
-    }
-    get title() {
-        return this._title;
+    set school(value) {
+        this._school = value;
     }
 
-    set title(value) {
-        this._title = value;
+    get degree() {
+        return this._degree;
     }
 
-    get company() {
-        return this._company;
+    set degree(value) {
+        this._degree = value;
     }
 
-    set company(value) {
-        this._company = value;
+    get field() {
+        return this._field;
+    }
+
+    set field(value) {
+        this._field = value;
     }
 
     /**
@@ -54,14 +55,6 @@ export default class Experience {
         this._endDate = value;
     }
 
-    get atThisRole() {
-        return this._atThisRole;
-    }
-
-    set atThisRole(value) {
-        this._atThisRole = value;
-    }
-
     get description() {
         return this._description;
     }
@@ -70,26 +63,25 @@ export default class Experience {
         this._description = value;
     }
 
+
     /**
      *
      * @param {string} _id
-     * @param {string} title
-     * @param {string} company
+     * @param {string} school
+     * @param {string} degree
+     * @param {string} field
      * @param {string} startDate
      * @param {string} endDate
-     * @param {boolean} atThisRole
      * @param {string} description
-     * @param {string} icon
      */
-    constructor({_id,title, company, startDate, endDate, atThisRole, description,icon}) {
+    constructor({_id, school, degree, field, startDate, endDate, description}) {
         this._id = _id
-        this._title = title
-        this._company = company
+        this._school = school
+        this._degree = degree
+        this._field = field
         this._startDate = new Date(startDate)
-        this._endDate = endDate ? new Date(endDate) : null
-        this._atThisRole = atThisRole;
+        this._endDate = new Date(endDate) ;
         this._description = description
-        this._icon = icon
     }
 
 }

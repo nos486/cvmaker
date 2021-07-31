@@ -16,7 +16,7 @@ export default {
         if(!this.$store.getters.isLoggedIn){
             this.$router.push("/")
         }else {
-            this.$store.dispatch("updateUser")
+            this.$store.dispatch("getUser")
         }
     },
     methods : {

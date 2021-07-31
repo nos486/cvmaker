@@ -1,18 +1,19 @@
 <template>
-    <div class="mb-2">
-        <div :class="$store.getters.mainColor+'-text'" class="darken-1" style="font-size: 13pt">
-            <i :class="icon"></i> <b>{{ title }}</b>
-        </div>
-        <div class="text-secondary small mt-n2">
+    <div class="mb-3">
+        <IconText :color="color" :text="title" :icon="icon"></IconText>
+
+        <div class="text-secondary mt-n1">
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
+import IconText from "@/templates/basic/ui/IconText";
 export default {
     name: "SubItem",
-    props: {
+  components: {IconText},
+  props: {
         title: {
             type: String,
             default: "Title"
@@ -21,6 +22,10 @@ export default {
             type: String,
             default: ""
         },
+      color: {
+        type: String,
+        default: "grey"
+      },
     }
 }
 </script>

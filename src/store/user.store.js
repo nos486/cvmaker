@@ -47,7 +47,7 @@ export default {
                 axios.post(`${config.apiUrl}/authenticate`, data).then((response) => {
                     console.log(response.data)
                     context.commit("setToken", response.data)
-                    context.dispatch("updateUser").then(response => {
+                    context.dispatch("getUser").then(response => {
                         resolve(response)
                     }).catch((err)=>{
                         reject(err)
@@ -69,7 +69,7 @@ export default {
                 })
             })
         },
-        updateUser(context) {
+        getUser(context) {
             return new Promise((resolve, reject) => {
                 axios.post(`${config.apiUrl}/user`).then((response) => {
                     context.state.user = new User(response.data)
@@ -93,6 +93,33 @@ export default {
                 })
             })
         },
+
+        /**
+         *
+         * @param context
+         * @param {{
+         *     country? : string,
+         *     city? : string ,
+         *     phone? : string,
+         *     email? : string
+         *     website? : string
+         *     linkedin? : string
+         *     github? : string
+         *
+         * }} data
+         * @return {Promise<unknown>}
+         */
+        updateUserData(context, data) {
+            return new Promise((resolve, reject) => {
+                axios.post(`${config.apiUrl}/user`, data).then((response) => {
+                    console.log(response.data)
+                    resolve(response)
+                }).catch(err => {
+                    reject(err)
+                })
+            })
+        },
+
     },
 }
 

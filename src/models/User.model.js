@@ -1,4 +1,6 @@
-import ExperienceModel from "@/models/Experience.model";
+import Experience from "@/models/Experience.model";
+import Education from "@/models/Education.model";
+import License from "@/models/License.model";
 
 export default class User {
     get id() {
@@ -18,7 +20,7 @@ export default class User {
     }
 
     get username() {
-        return this.capitalizeFirstLetter(this._username);
+        return this._username;
     }
 
     set username(value) {
@@ -26,7 +28,7 @@ export default class User {
     }
 
     get firstName() {
-        return this.capitalizeFirstLetter(this._firstName);
+        return this._firstName;
     }
 
     set firstName(value) {
@@ -34,7 +36,7 @@ export default class User {
     }
 
     get lastName() {
-        return this.capitalizeFirstLetter(this._lastName);
+        return this._lastName;
     }
 
     set lastName(value) {
@@ -42,7 +44,7 @@ export default class User {
     }
 
     get gender() {
-        return this.capitalizeFirstLetter(this._gender);
+        return this._gender;
     }
 
     set gender(value) {
@@ -50,7 +52,7 @@ export default class User {
     }
 
     get email() {
-        return this.capitalizeFirstLetter(this._email);
+        return this._email;
     }
 
     set email(value) {
@@ -58,7 +60,7 @@ export default class User {
     }
 
     get headLine() {
-        return this.capitalizeFirstLetter(this._headLine);
+        return this._headLine;
     }
 
     set headLine(value) {
@@ -74,7 +76,7 @@ export default class User {
     }
 
     get website() {
-        return this.capitalizeFirstLetter(this._website);
+        return this._website;
     }
 
     set website(value) {
@@ -82,7 +84,7 @@ export default class User {
     }
 
     get github() {
-        return this.capitalizeFirstLetter(this._github);
+        return this._github;
     }
 
     set github(value) {
@@ -90,7 +92,7 @@ export default class User {
     }
 
     get linkedin() {
-        return this.capitalizeFirstLetter(this._linkedin);
+        return this._linkedin;
     }
 
     set linkedin(value) {
@@ -98,7 +100,7 @@ export default class User {
     }
 
     get country() {
-        return this.capitalizeFirstLetter(this._country);
+        return this._country;
     }
 
     set country(value) {
@@ -106,7 +108,7 @@ export default class User {
     }
 
     get city() {
-        return this.capitalizeFirstLetter(this._city);
+        return this._city;
     }
 
     set city(value) {
@@ -147,7 +149,14 @@ export default class User {
 
     /**
      *
-     * @return {{title:	string,company:	string,startDate:Date,endDate:Date,atThisRole:boolean,description:string}[]}
+     * @return {{
+     * title:	string,
+     * company:	string,
+     * startDate:Date,
+     * endDate:Date,
+     * atThisRole:boolean,
+     * description:string
+     * }[]}
      */
     get experiences() {
         return this._experiences;
@@ -157,6 +166,17 @@ export default class User {
         this._experiences = value;
     }
 
+    /**
+     *
+     * @return {{
+    school: string,
+    degree: string,
+    field: string,
+    startDate: Date,
+    endDate: Date,
+    description: string
+    }[]}
+     */
     get educations() {
         return this._educations;
     }
@@ -165,6 +185,16 @@ export default class User {
         this._educations = value;
     }
 
+    /**
+     *
+     * @return {{
+    name: string,
+    issuingOrganization: string,
+    issueDate: Date,
+    credentialID: Date,
+    credentialUrl: string
+    }[]}
+     */
     get licenses() {
         return this._licenses;
     }
@@ -268,10 +298,16 @@ export default class User {
         this._skills = skills
         this._experiences = []
         for (const experience of experiences) {
-            this._experiences.push(new ExperienceModel(experience))
+            this._experiences.push(new Experience(experience))
         }
-        this._educations = educations
-        this._licenses = licenses
+        this._educations = []
+        for (const education of educations) {
+            this._educations.push(new Education(education))
+        }
+        this._licenses = []
+        for (const license of licenses) {
+            this._licenses.push(new License(license))
+        }
         this._languages = languages
         this._avatar = ""
         this._settings = settings

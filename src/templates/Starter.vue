@@ -1,13 +1,18 @@
 <template>
-    <v-container>
+    <v-container v-if="user!=null">
       <v-row align="start" justify="center">
+
         <div class="col-sm-6 col-md-5 col-xl-4 d-flex flex-column px-5 grey lighten-3">
           <UserSummery :user="user" class="mt-16"></UserSummery>
           <Contact :user="user" class="mt-10"></Contact>
           <Skills :user="user" class="mt-10"></Skills>
           <Languages :user="user" class="mt-10 mb-10"></Languages>
         </div>
-        <div class="col-sm-6 col-md-7 p-4 ">
+        <div class="col-sm-6 col-md-7 px-5">
+          <About :user="user" class="mt-10"></About>
+          <Experience :user="user" class="mt-10"></Experience>
+          <Education :user="user" class="mt-10"></Education>
+          <Licenses :user="user" class="mt-10"></Licenses>
 <!--          <div class="blue" style="width: 100%;height: 600px">-->
 <!--dd-->
 <!--          </div>-->
@@ -52,10 +57,16 @@ import Skills from "@/templates/basic/Skills";
 import Languages from "@/templates/basic/Languages";
 import About from "@/templates/basic/About";
 import Experience from "@/templates/basic/Experience";
+import Education from "@/templates/basic/Education";
+import Licenses from "@/templates/basic/Licenses";
 
 export default {
     name: 'Starter',
     components: {
+      Licenses,
+      Education,
+      Experience,
+      About,
       Languages,
       Skills,
       Contact,

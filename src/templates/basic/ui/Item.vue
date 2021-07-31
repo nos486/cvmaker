@@ -1,8 +1,11 @@
 <template>
     <div>
-        <div :class="color+'--text'" class="text-h5 font-weight-light text--darken-3"><b>{{ title }}</b></div>
+        <div class="d-flex justify-space-between">
+        <div :class="color+'--text'" class="text-h5 text--darken-3"><b>{{ title }}</b></div>
+          <slot name="edit"></slot>
+        </div>
         <div class="grey--text text--darken-2 mt-2">
-            <slot></slot>
+            <slot name="default"></slot>
         </div>
     </div>
 </template>

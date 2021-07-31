@@ -63,6 +63,14 @@ export default {
         //     console.log(`A timeout happend on url ${error.config.url}`)
         // }
         //
+        //
+
+        if (!error.response) {
+          this.$toast.error("Network Error")
+          this.$router.push("/")
+        }
+
+
         if (Array.isArray(error.response.data)) {
           for (let err of error.response.data) {
             this.$toast.error(err.message)
