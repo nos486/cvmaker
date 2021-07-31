@@ -3,6 +3,13 @@ import Education from "@/models/Education.model";
 import License from "@/models/License.model";
 
 export default class User {
+    get icon() {
+        return this._icon;
+    }
+
+    set icon(value) {
+        this._icon = value;
+    }
     get id() {
         return this._id;
     }
@@ -265,6 +272,7 @@ export default class User {
                     gender,
                     email,
                     headLine,
+                    icon,
                     phone,
                     website,
                     github,
@@ -287,6 +295,7 @@ export default class User {
         this._gender = gender
         this._email = email
         this._headLine = headLine
+        this._icon = icon
         this._phone = phone
         this._website = website
         this._github = github

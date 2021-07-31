@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-btn icon @click="show">
+    <v-btn icon color="cyan" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" max-width="450" v-on:click:outside="hide">
       <v-card>
         <v-card-title class="text-h5 grey lighten-4 cyan--text">
-          <v-icon class="mr-1 cyan--text">mdi-file-table-box-multiple-outline</v-icon>Icons
+          <v-icon left class="cyan--text">mdi-account-edit</v-icon>Contact Info
         </v-card-title>
 
         <v-card-text class="py-4 px-4 px-sm-8">

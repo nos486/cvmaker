@@ -1,19 +1,26 @@
 <template>
     <div class="d-flex flex-column align-center justify-center">
-      <v-avatar size="180" class="" >
+      <div class="" style="width: 100%">
+        <BasicEditor :user="user" class="float-right"></BasicEditor>
+      </div>
+
+      <v-avatar size="200" class="" >
         <AvatarImage :id="user.id"></AvatarImage>
       </v-avatar>
       <div class="d-flex flex-column">
 
-      <div :class="user.settings.color+'--text'" class="text-right" style="margin-bottom: -20px">
-        <div>
+      <div :class="user.settings.color+'--text'" class="d-flex align-center justify-end mb-n4">
+
           {{monthNames[user.birthday.getUTCMonth()]}} {{ user.birthday.getFullYear() }}
-          <v-icon class="mb-4" :color="user.settings.color">mdi-cake-variant</v-icon>
-        </div>
+          <v-icon class="mb-3" :color="user.settings.color">mdi-cake-variant</v-icon>
 
       </div>
-      <div :class="user.settings.color+'--text'" class="display-2 font-weight-thin text--darken-3"><b>{{ user.firstName }}</b> {{ user.lastName }}</div>
-        <div v-if="user.headLine !== ''" class="text-h6 font-weight-light mt-n2">{{ user.headLine }}</div>
+      <div :class="user.settings.color+'--text'" class="display-3 font-weight-thin text--darken-3 text-capitalize"><b>{{ user.firstName }}</b> {{ user.lastName }}</div>
+
+        <div v-if="user.headLine !== ''" class="d-flex align-center text-h6 font-weight-light mt-n2">
+          <v-icon left :color="user.settings.color" size="26">{{user.icon}}</v-icon>
+          {{ user.headLine }}
+        </div>
       </div>
     </div>
 <!--    <div class="d-flex flex-column justify-content-center align-items-center">-->
@@ -35,10 +42,12 @@ import UserModel from "@/models/User.model";
 import EditBox from "@/templates/basic/EditBox";
 import Avatar from "@/components/ui/AvatarImage";
 import AvatarImage from "@/components/ui/AvatarImage";
+import BasicEditor from "@/components/BasicEditor";
 
 export default {
-    name: "UserSummery",
+    name: "UserBasic",
     components: {
+      BasicEditor,
       AvatarImage,
     },
     data : function (){

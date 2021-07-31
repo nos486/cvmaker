@@ -3,7 +3,7 @@
       <v-row align="start" justify="center">
 
         <div class="col-sm-6 col-md-5 col-xl-4 d-flex flex-column px-5 grey lighten-3">
-          <UserSummery :user="user" class="mt-16"></UserSummery>
+          <UserBasic :user="user" class="mt-16"></UserBasic>
           <Contact :user="user" class="mt-10"></Contact>
           <Skills :user="user" class="mt-10"></Skills>
           <Languages :user="user" class="mt-10 mb-10"></Languages>
@@ -48,10 +48,7 @@ sdssss
 <!--    </div>-->
 </template>
 <script>
-import axios from "axios";
-import config from "@/config";
-import UserModel from "@/models/User.model";
-import UserSummery from "@/templates/basic/UserSummery";
+
 import Contact from "@/templates/basic/Contact";
 import Skills from "@/templates/basic/Skills";
 import Languages from "@/templates/basic/Languages";
@@ -59,10 +56,12 @@ import About from "@/templates/basic/About";
 import Experience from "@/templates/basic/Experience";
 import Education from "@/templates/basic/Education";
 import Licenses from "@/templates/basic/Licenses";
+import UserBasic from "@/templates/basic/UserBasic";
 
 export default {
     name: 'Starter',
     components: {
+      UserBasic,
       Licenses,
       Education,
       Experience,
@@ -70,7 +69,6 @@ export default {
       Languages,
       Skills,
       Contact,
-      UserSummery
         // Experience,
         // About, Languages, Skills, Contact, UserSummery
     },
