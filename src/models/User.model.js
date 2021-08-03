@@ -302,13 +302,13 @@ export default class User {
         this._linkedin = linkedin
         this._country = country
         this._city = city
-        this._birthday = new Date(birthday)
+        this._birthday = birthday
         this._about = about
         this._skills = skills
-        this._experiences = []
-        for (const experience of experiences) {
-            this._experiences.push(new Experience(experience))
-        }
+        this._experiences = experiences
+        // for (const experience of experiences) {
+        //     this._experiences.push(new Experience(experience))
+        // }
         this._educations = []
         for (const education of educations) {
             this._educations.push(new Education(education))

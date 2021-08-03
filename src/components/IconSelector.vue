@@ -6,9 +6,9 @@
       <v-icon>{{value}}</v-icon>
     </v-btn>
 
-    <v-text-field ref="textField" v-else v-model="value" :label="title" :prepend-inner-icon="value" color="cyan" readonly @click="show" ></v-text-field>
+    <v-text-field ref="textField" v-else v-model="value" :label="title" :prepend-inner-icon="value" color="cyan" readonly @click="show" append-icon="mdi-close" @click:append="$emit('input','mdi-blank')"></v-text-field>
 
-    <v-dialog v-model="isShow" max-width="350" v-on:click:outside="clickOutside">
+    <v-dialog v-model="isShow" max-width="400" v-on:click:outside="clickOutside">
       <v-card>
         <v-card-title class="text-h5 grey lighten-4 cyan--text">
           <v-icon class="mr-1 cyan--text">mdi-file-table-box-multiple-outline</v-icon>
@@ -110,6 +110,9 @@ export default {
     hide() {
       this.isShow = false
       this.search = ""
+    },
+    validate : function () {
+      return true
     },
     /**
      *

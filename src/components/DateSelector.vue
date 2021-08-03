@@ -1,7 +1,7 @@
 <template>
     <v-menu ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
       <template v-slot:activator="{ on, attrs }">
-        <v-text-field v-model="date" :label="title" prepend-inner-icon="mdi-calendar" color="cyan" readonly v-bind="attrs" v-on="on"></v-text-field>
+        <v-text-field ref="date" v-model="date" :label="title" prepend-inner-icon="mdi-calendar" color="cyan" readonly append-icon="mdi-close" @click:append="clear" v-bind="attrs" v-on="on" :rules="(required) ? dateRules : []"></v-text-field>
       </template>
       <v-date-picker v-model="date" min="1950-01-01" color="cyan" @change="save"></v-date-picker>
     </v-menu>
@@ -16,31 +16,41 @@ export default {
     activePicker: null,
     date : null,
     menu: false,
+    dateRules: [
+      v => !!v || 'Date is required',
+    ],
   }),
   props: {
     value: {
-      type: Date
+      type: String
     },
     title : {
       type : String
+    },
+    required : {
+      type : Boolean,
+      default : false,
+    }
+  },
+  watch : {
+    value: function (newValue,oldValue){
+      if(this.value != null) this.date = this.value.substr(0, 10)
     }
   },
   mounted() {
-    this.date = this.value.toISOString().substr(0, 10)
-  },
-  computed : {
-
+    if(this.value != null) this.date = this.value.substr(0, 10)
   },
   methods: {
-    show() {
-      this.isShow = true
-    },
-    hide() {
-      this.isShow = false
+    validate : function () {
+      return this.$refs.date.validate()
     },
     save(){
-      this.$emit("input",new Date(this.date))
+      this.$emit("input",new Date(this.date).toISOString())
       this.$refs.menu.save(this.date)
+    },
+    clear(){
+      this.date = null
+      this.$emit("input",null)
     }
   }
 }

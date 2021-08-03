@@ -11,7 +11,7 @@
 
       <div :class="user.settings.color+'--text'" class="d-flex align-center justify-end mb-n4">
 
-          {{monthNames[user.birthday.getUTCMonth()]}} {{ user.birthday.getFullYear() }}
+          {{monthNames[new Date(user.birthday).getUTCMonth()]}} {{ new Date(user.birthday).getFullYear() }}
           <v-icon class="mb-3" :color="user.settings.color">mdi-cake-variant</v-icon>
 
       </div>
@@ -42,7 +42,7 @@ import UserModel from "@/models/User.model";
 import EditBox from "@/templates/basic/EditBox";
 import Avatar from "@/components/ui/AvatarImage";
 import AvatarImage from "@/components/ui/AvatarImage";
-import BasicEditor from "@/components/BasicEditor";
+import BasicEditor from "@/components/editors/BasicEditor";
 
 export default {
     name: "UserBasic",

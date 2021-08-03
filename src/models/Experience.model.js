@@ -92,4 +92,8 @@ export default class Experience {
         this._icon = icon
     }
 
+    toString(){
+
+    }
+
 }

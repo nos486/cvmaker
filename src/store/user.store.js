@@ -97,24 +97,18 @@ export default {
         /**
          *
          * @param context
-         * @param {{
-         *     country? : string,
-         *     city? : string ,
-         *     phone? : string,
-         *     email? : string
-         *     website? : string
-         *     linkedin? : string
-         *     github? : string
-         *
-         * }} data
+         * @param {Object} data
          * @return {Promise<unknown>}
          */
         updateUserData(context, data) {
+            context.commit("overlayShow")
             return new Promise((resolve, reject) => {
                 axios.post(`${config.apiUrl}/user`, data).then((response) => {
-                    console.log(response.data)
+                    context.state.user = new User(response.data)
+                    context.commit("overlayHide")
                     resolve(response)
                 }).catch(err => {
+                    context.commit("overlayHide")
                     reject(err)
                 })
             })

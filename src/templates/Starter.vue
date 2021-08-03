@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-6 col-md-7 px-5">
           <About :user="user" class="mt-10"></About>
-          <Experience :user="user" class="mt-10"></Experience>
+          <Experiences :user="user" class="mt-10"></Experiences>
           <Education :user="user" class="mt-10"></Education>
           <Licenses :user="user" class="mt-10"></Licenses>
 <!--          <div class="blue" style="width: 100%;height: 600px">-->
@@ -53,7 +53,7 @@ import Contact from "@/templates/basic/Contact";
 import Skills from "@/templates/basic/Skills";
 import Languages from "@/templates/basic/Languages";
 import About from "@/templates/basic/About";
-import Experience from "@/templates/basic/Experience";
+import Experiences from "@/templates/basic/Experiences";
 import Education from "@/templates/basic/Education";
 import Licenses from "@/templates/basic/Licenses";
 import UserBasic from "@/templates/basic/UserBasic";
@@ -64,7 +64,7 @@ export default {
       UserBasic,
       Licenses,
       Education,
-      Experience,
+      Experiences,
       About,
       Languages,
       Skills,

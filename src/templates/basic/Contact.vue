@@ -20,7 +20,7 @@ import IconText from "@/templates/basic/ui/IconText";
 import UserModel from "@/models/User.model";
 import EditBox from "@/templates/basic/EditBox";
 import IconSelector from "@/components/IconSelector";
-import ContactEditor from "@/components/ContactEditor";
+import ContactEditor from "@/components/editors/ContactEditor";
 
 export default {
   name: "Contact",
