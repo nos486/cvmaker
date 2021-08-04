@@ -1,6 +1,6 @@
 <template>
-    <div class="mb-3">
-        <IconText :color="color" :text="title" :icon="icon"></IconText>
+    <div class="mb-3 ">
+        <IconText :color="color" :text="title" :icon="icon" class="text-capitalize"></IconText>
 
         <div class="text-secondary mt-n1">
             <slot></slot>
