@@ -114,11 +114,11 @@ export default {
       this.isShow = true
       // this.tab = null
       this.experiences = JSON.parse(JSON.stringify(this.user.experiences));
-      console.log(this.experiences)
     },
     hide() {
       this.isShow = false
     },
+
     addTab() {
       this.experiences.push({
         title: "",
@@ -151,9 +151,12 @@ export default {
         if(index < this.experiences.length - 1){
           setTimeout(()=>{
             this.reviewTabs(index+1,callback)
-          },500)
+          },400)
         }else {
-          callback()
+          setTimeout(()=>{
+            callback()
+          },400)
+
         }
       })
     },
@@ -167,18 +170,23 @@ export default {
           }
         }))
 
-        let t = -1
+        //find the tab with validation error
+        let tab = -1
         this.experiences.forEach((value, index) => {
           let f = `formExperience${index}`
-          if(!this.$refs[f][0].validate()) t = index
+          console.log(this.$refs[f])
+          console.log(f)
+          if(!this.$refs[f][0].validate()) tab = index
         })
-        if(t !== -1){
+        if(tab !== -1){
+          //move to the tab has an error
           this.$nextTick(()=>{
-            this.tab = t
+            this.tab = tab
           })
         }else {
           this.$store.dispatch("updateUserData", data).then(() => {
             this.$toast.success("User updated.")
+            this.tab = null
             this.hide()
           })
         }
