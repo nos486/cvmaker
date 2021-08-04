@@ -6,12 +6,18 @@
     <div v-for="(experience,index) in user.experiences" :key="index" >
       <SubItem :title="experience.title" :icon="experience.icon" :color="user.settings.color">
         <div class="d-flex align-center">
-          <b>{{ experience.company }}</b>
-          <v-chip :color="user.settings.color" class="darken-2 ml-2" dark small>
+          <b class="text-capitalize">{{ experience.company }}</b>
+          <v-chip :color="user.settings.color" class="darken-2 text--darken-2 ml-2" dark outlined>
             <v-icon left>mdi-calendar</v-icon>
-            <strong>
-              {{ new Date(experience.startDate).getFullYear() }} – {{ experience.atThisRole ? "Present" : new Date(experience.endDate).getFullYear() }}
-            </strong>
+            <div class="d-flex align-center text-center" style="white-space: pre-line;line-height: 10px">
+              <small class="font-weight-bold">
+                {{ dateStingToString(experience.startDate) }}
+              </small>
+              <div class="ma-1">-</div>
+              <small class="font-weight-bold">
+                 {{ experience.atThisRole ? "Present" : dateStingToString(experience.endDate) }}
+              </small>
+            </div>
           </v-chip>
         </div>
         <div class="ml-4">
@@ -28,6 +34,7 @@
 import Item from "@/templates/basic/ui/Item"
 import SubItem from "@/templates/basic/ui/SubItem"
 import UserModel from "@/models/User.model";
+import {numberToMonthName} from "@/helpers"
 import ExperiencesEditor from "@/components/editors/ExpriencesEditor";
 
 export default {
@@ -36,6 +43,11 @@ export default {
   props: {
     user: {
       type: UserModel
+    }
+  },
+  methods :{
+    dateStingToString(date){
+      return  numberToMonthName(new Date(date).getMonth()) + "\n" + new Date(date).getFullYear()
     }
   }
 }
