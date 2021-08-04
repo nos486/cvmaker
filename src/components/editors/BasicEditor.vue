@@ -87,7 +87,7 @@ export default {
       let data = {
         firstName: this.firstName,
         lastName: this.lastName,
-        birthday: this.birthday.toISOString(),
+        birthday: this.birthday,
         headLine: this.headLine,
         icon: this.icon,
       }

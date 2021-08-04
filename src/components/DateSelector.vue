@@ -45,6 +45,7 @@ export default {
       return this.$refs.date.validate()
     },
     save(){
+      console.log(this.date)
       this.$emit("input",new Date(this.date).toISOString())
       this.$refs.menu.save(this.date)
     },
