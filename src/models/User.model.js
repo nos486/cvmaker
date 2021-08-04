@@ -309,10 +309,10 @@ export default class User {
         // for (const experience of experiences) {
         //     this._experiences.push(new Experience(experience))
         // }
-        this._educations = []
-        for (const education of educations) {
-            this._educations.push(new Education(education))
-        }
+        this._educations = educations
+        // for (const education of educations) {
+        //     this._educations.push(new Education(education))
+        // }
         this._licenses = []
         for (const license of licenses) {
             this._licenses.push(new License(license))
