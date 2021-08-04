@@ -30,13 +30,13 @@
               <v-tab-item v-for="(experience,index) in experiences" :key="index">
                 <v-form ref="form" class="py-4 px-4">
                   <div class="d-flex">
-                    <v-btn icon :disabled="index===0" title="Move Skill Up" @click="moveTabUp(index)">
+                    <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
                       <v-icon>mdi-arrow-up</v-icon>
                     </v-btn>
-                    <v-btn icon :disabled="index===experiences.length-1" title="Move Skill Down" @click="moveTabDown(index)">
+                    <v-btn icon :disabled="index===experiences.length-1" title="Move Tab Down" @click="moveTabDown(index)">
                       <v-icon>mdi-arrow-down</v-icon>
                     </v-btn>
-                    <v-btn class="ml-auto" color="red" text title="Delete Skill" @click="removeTab(index)">
+                    <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
                       <v-icon left>mdi-delete</v-icon>
                       Delete
                     </v-btn>
@@ -174,8 +174,6 @@ export default {
         let tab = -1
         this.experiences.forEach((value, index) => {
           let f = `formExperience${index}`
-          console.log(this.$refs[f])
-          console.log(f)
           if(!this.$refs[f][0].validate()) tab = index
         })
         if(tab !== -1){

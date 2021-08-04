@@ -14,7 +14,7 @@
               <AvatarImage :id="$store.getters.user.id" size="60"></AvatarImage>
             </v-list-item-avatar>
             <v-list-item-content class="ml-2">
-              <v-list-item-title class="text-h5 cyan--text">{{ $store.getters.user.firstName }} {{ $store.getters.user.lastName }}</v-list-item-title>
+              <v-list-item-title class="text-h5 cyan--text text-capitalize">{{ $store.getters.user.firstName }} {{ $store.getters.user.lastName }}</v-list-item-title>
               <v-list-item-subtitle>{{ $store.getters.user.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
