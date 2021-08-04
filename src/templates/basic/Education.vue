@@ -1,5 +1,8 @@
 <template>
   <item v-if="user.educations.length > 0" title="Educations" :color="user.settings.color">
+    <template v-slot:edit>
+      <EducationsEditor :user="user"></EducationsEditor>
+    </template>
     <div v-for="(education,index) in user.educations" :key="index" >
       <SubItem :title="education.school"  :color="user.settings.color">
         <div class="d-flex align-center">
@@ -13,7 +16,7 @@
         </div>
         <div >
           <small>
-            {{ education.startDate.getFullYear() }} - {{ education.endDate.getFullYear()}}
+            {{ dateStingToString(education.startDate) }} - {{ dateStingToString(education.endDate)}}
           </small>
         </div>
       </SubItem>
@@ -25,13 +28,20 @@
 import Item from "@/templates/basic/ui/Item"
 import SubItem from "@/templates/basic/ui/SubItem"
 import UserModel from "@/models/User.model";
+import EducationsEditor from "@/components/editors/EducationsEditor";
+import {numberToMonthName} from "@/helpers";
 
 export default {
   name: 'Education',
-  components: {Item, SubItem},
+  components: {EducationsEditor, Item, SubItem},
   props: {
     user: {
       type: UserModel
+    }
+  },
+  methods :{
+    dateStingToString(date){
+      return  numberToMonthName(new Date(date).getMonth()) + "\n" + new Date(date).getFullYear()
     }
   }
 }
