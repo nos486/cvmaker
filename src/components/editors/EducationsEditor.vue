@@ -3,7 +3,7 @@
     <v-btn icon color="cyan" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
-    <v-dialog v-model="isShow" max-width="450" v-on:click:outside="hide">
+    <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
       <v-card>
         <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4 cyan--text">
           <div class="d-flex align-center">
@@ -22,9 +22,9 @@
 
           <v-tabs v-model="tab" color="cyan" background-color="grey lighten-4" centered vertical hide-slider>
 
-            <v-tab v-for="(education,index) in educations" :key="index" :title="education.title">
-              <div class="text-truncate" style="max-width: 50px">
-              {{ education.field === "" ? index+1 : education.field }}
+            <v-tab v-for="(education,index) in educations" :key="index" :title="education.field">
+              <div class="text-truncate" style="max-width: 56px">
+              {{ index+1 }}
               </div>
             </v-tab>
 

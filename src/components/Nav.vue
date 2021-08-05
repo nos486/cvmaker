@@ -1,17 +1,8 @@
 <template>
     <div style="position: relative">
     <v-app-bar class="px-2" color="transparent" flat height="70" style="position: absolute">
-      <v-row align="center" justify="space-between">
+      <v-row align="center">
         <UserController></UserController>
-
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <div class="ml-2 mr-auto" v-bind="attrs" v-on="on">
-              <v-switch color="cyan"  inset hide-details ></v-switch>
-            </div>
-          </template>
-          <span>Editing Mode</span>
-        </v-tooltip>
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">

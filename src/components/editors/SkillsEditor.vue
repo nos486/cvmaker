@@ -23,7 +23,8 @@
           <v-tabs v-model="tab" color="cyan" background-color="grey lighten-4" centered vertical hide-slider>
 
             <v-tab v-for="(skill,index) in skills" :key="index" :title="skill.title">
-              <v-icon>{{ skill.icon }}</v-icon>
+              <v-icon v-if="skill.icon !== 'mdi-blank'">{{ skill.icon }}</v-icon>
+              <div v-else class="text-truncate" style="max-width: 56px">{{skill.title}}</div>
             </v-tab>
 
             <v-tabs-items v-model="tab" vertical>

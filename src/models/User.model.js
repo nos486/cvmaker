@@ -313,10 +313,10 @@ export default class User {
         // for (const education of educations) {
         //     this._educations.push(new Education(education))
         // }
-        this._licenses = []
-        for (const license of licenses) {
-            this._licenses.push(new License(license))
-        }
+        this._licenses = licenses
+        // for (const license of licenses) {
+        //     this._licenses.push(new License(license))
+        // }
         this._languages = languages
         this._avatar = ""
         this._settings = settings
