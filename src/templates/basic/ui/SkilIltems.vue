@@ -2,7 +2,7 @@
     <div class="mb-4">
         <IconText :icon="icon" :text="title"></IconText>
         <div class="d-flex justify-start flex-wrap mt-1">
-          <v-chip v-for="(item,index) in list" :key="index" class="mr-1 mb-1" :color="color" label dark draggable>
+          <v-chip v-for="(item,index) in list" :key="index" class="mr-1 mb-1" :color="color" label dark>
             {{ item }}
           </v-chip>
         </div>
