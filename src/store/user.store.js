@@ -34,7 +34,7 @@ export default {
             state.refreshToken = ""
             localStorage.removeItem("refreshToken")
             localStorage.removeItem("jwtToken")
-        }
+        },
     },
     actions: {
         /**
@@ -113,6 +113,19 @@ export default {
                 })
             })
         },
+        uploadAvatar(context, formData) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.post(`${config.apiUrl}/avatar`, formData).then((response) => {
+                    context.commit("overlayHide")
+                    resolve(response)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
+                })
+            })
+        },
+
 
     },
 }
