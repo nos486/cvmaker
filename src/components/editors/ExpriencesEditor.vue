@@ -3,7 +3,7 @@
     <v-btn icon color="cyan" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
-    <v-dialog v-model="isShow" max-width="450" v-on:click:outside="hide">
+    <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
       <v-card>
         <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4 cyan--text">
           <div class="d-flex align-center">
