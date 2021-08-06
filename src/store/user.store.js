@@ -69,9 +69,10 @@ export default {
                 })
             })
         },
-        getUser(context) {
+        getUser(context,username=null) {
             return new Promise((resolve, reject) => {
-                axios.post(`${config.apiUrl}/user`).then((response) => {
+                let url = (username) ? `${config.apiUrl}/users/${username}` : `${config.apiUrl}/user`
+                axios.get(url).then((response) => {
                     context.state.user = new User(response.data)
                     resolve(response)
                 }).catch(err => {
