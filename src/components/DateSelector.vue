@@ -1,9 +1,9 @@
 <template>
     <v-menu ref="menu" v-model="menu" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
       <template v-slot:activator="{ on, attrs }">
-        <v-text-field ref="date" v-model="date" :label="title" prepend-inner-icon="mdi-calendar" color="cyan" readonly append-icon="mdi-close" @click:append="clear" v-bind="attrs" v-on="on" :rules="(required) ? dateRules : []"></v-text-field>
+        <v-text-field ref="date" v-model="date" :label="title" prepend-inner-icon="mdi-calendar" :color="color" readonly append-icon="mdi-close" @click:append="clear" v-bind="attrs" v-on="on" :rules="(required) ? dateRules : []"></v-text-field>
       </template>
-      <v-date-picker v-model="date" type="month" min="1950-01" color="cyan" @change="save" ></v-date-picker>
+      <v-date-picker v-model="date" type="month" min="1950-01" :color="color" @change="save" ></v-date-picker>
     </v-menu>
 </template>
 
@@ -30,6 +30,9 @@ export default {
     required : {
       type : Boolean,
       default : false,
+    },
+    color : {
+      default : "grey"
     }
   },
   watch : {

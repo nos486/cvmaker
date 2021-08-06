@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-btn icon color="cyan" @click="show">
+    <v-btn icon :color="user.settings.color" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
       <v-card>
-        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4 cyan--text">
-          <div class="d-flex align-center">
-            <v-icon left class="cyan--text">mdi-account-edit</v-icon>
+        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4">
+          <div class="d-flex align-center" :class="user.settings.color+'--text'">
+            <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
             Experiences
           </div>
           <div class="d-flex align-center ml-2">
@@ -20,7 +20,7 @@
 
         <div class="d-flex flex-column pa-0">
 
-          <v-tabs v-model="tab" color="cyan" background-color="grey lighten-4" centered vertical hide-slider>
+          <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
 
             <v-tab v-for="(experience,index) in experiences" :key="index" :title="experience.title">
               <v-icon>{{ experience.icon }}</v-icon>
@@ -42,17 +42,17 @@
                     </v-btn>
                   </div>
                   <v-form :ref="'formExperience'+index" v-model="isFormValid">
-                    <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" color="cyan" :rules="titleRules"></v-text-field>
+                    <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" :color="user.settings.color" :rules="titleRules"></v-text-field>
                     <IconSelector v-model="experience.icon" title="Experience Icon"></IconSelector>
-                    <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" color="cyan" :rules="companyRules"></v-text-field>
+                    <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="companyRules"></v-text-field>
                     <DateSelector title="Start Date" v-model="experience.startDate" required></DateSelector>
                     <div class="d-flex align-center my-n2">
                       <v-icon left>mdi-account-tie</v-icon>
                       Currently working in this role:
-                      <v-switch v-model="experience.atThisRole" class="ml-auto" color="cyan" dense ></v-switch>
+                      <v-switch v-model="experience.atThisRole" class="ml-auto" :color="user.settings.color" dense ></v-switch>
                     </div>
                     <DateSelector v-if="! experience.atThisRole" title="End Date" v-model="experience.endDate" required></DateSelector>
-                    <v-textarea v-model="experience.description" color="cyan" rows="3" label="Description" hide-details></v-textarea>
+                    <v-textarea v-model="experience.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
                   </v-form>
 
                 </v-form>
@@ -70,7 +70,7 @@
           <v-btn color="grey" text @click="hide">
             Cancel
           </v-btn>
-          <v-btn color="cyan" text @click="save">
+          <v-btn :color="user.settings.color" text @click="save">
             Save
           </v-btn>
         </v-card-actions>

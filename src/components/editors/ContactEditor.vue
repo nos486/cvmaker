@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-btn icon color="cyan" @click="show">
+    <v-btn icon :color="user.settings.color" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" max-width="450" v-on:click:outside="hide">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-4 cyan--text">
-          <v-icon left class="cyan--text">mdi-account-edit</v-icon>
+        <v-card-title class="text-h5 grey lighten-4" :class="user.settings.color+'--text'">
+          <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
           Contact Info
         </v-card-title>
 
@@ -15,16 +15,16 @@
           <v-form ref="form" v-model="isFormValid">
             <div class="d-flex">
               <v-text-field v-model="country" label="Country" prepend-inner-icon="mdi-earth"
-                            color="cyan"></v-text-field>
+                            :color="user.settings.color"></v-text-field>
               <v-text-field class="ml-2" v-model="city" label="City" prepend-inner-icon="mdi-city"
-                            color="cyan"></v-text-field>
+                            :color="user.settings.color"></v-text-field>
             </div>
-            <v-text-field v-model="phone" label="Phone" prepend-inner-icon="mdi-phone" color="cyan"></v-text-field>
-            <v-text-field v-model="email" label="Email" prepend-inner-icon="mdi-email" color="cyan"></v-text-field>
-            <v-text-field v-model="website" label="Website" prepend-inner-icon="mdi-web" color="cyan"></v-text-field>
+            <v-text-field v-model="phone" label="Phone" prepend-inner-icon="mdi-phone" :color="user.settings.color"></v-text-field>
+            <v-text-field v-model="email" label="Email" prepend-inner-icon="mdi-email" :color="user.settings.color"></v-text-field>
+            <v-text-field v-model="website" label="Website" prepend-inner-icon="mdi-web" :color="user.settings.color"></v-text-field>
             <v-text-field v-model="linkedin" label="Linkedin" prepend-inner-icon="mdi-linkedin"
-                          color="cyan"></v-text-field>
-            <v-text-field v-model="github" label="GitHub" prepend-inner-icon="mdi-github" color="cyan"></v-text-field>
+                          :color="user.settings.color"></v-text-field>
+            <v-text-field v-model="github" label="GitHub" prepend-inner-icon="mdi-github" :color="user.settings.color"></v-text-field>
           </v-form>
         </v-card-text>
 
@@ -36,7 +36,7 @@
           <v-btn color="grey" text @click="hide">
             Cancel
           </v-btn>
-          <v-btn color="cyan" text @click="save">
+          <v-btn :color="user.settings.color" text @click="save">
             Save
           </v-btn>
         </v-card-actions>

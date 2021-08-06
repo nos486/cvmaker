@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-btn icon color="cyan" @click="show">
+    <v-btn icon :color="user.settings.color" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" max-width="450" v-on:click:outside="hide">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-4 cyan--text">
-          <v-icon left class="cyan--text">mdi-account-edit</v-icon>
+        <v-card-title class="text-h5 grey lighten-4 " :class="user.settings.color+'--text'">
+          <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
           Basic
         </v-card-title>
 
@@ -18,18 +18,18 @@
               <v-avatar>
                 <AvatarImage :id="$store.getters.user.id" size="60"></AvatarImage>
               </v-avatar>
-              <v-file-input v-model="uploadAvatar" class="ml-2" accept="image/*" label="Avatar picture" color="cyan"></v-file-input>
+              <v-file-input v-model="uploadAvatar" class="ml-2" accept="image/*" label="Avatar picture" :color="user.settings.color"></v-file-input>
             </div>
             <div class="d-flex">
               <v-text-field v-model="firstName" label="First Name" prepend-inner-icon="mdi-account-details"
-                            color="cyan"></v-text-field>
+                            :color="user.settings.color"></v-text-field>
               <v-text-field class="ml-2" v-model="lastName" label="Last Name" prepend-inner-icon="mdi-account-details"
-                            color="cyan"></v-text-field>
+                            :color="user.settings.color"></v-text-field>
             </div>
-            <DateSelector v-model="birthday" title="Birthday Date"></DateSelector>
+            <DateSelector v-model="birthday" title="Birthday Date" :color="user.settings.color"></DateSelector>
             <v-text-field v-model="headLine" label="Head Line" prepend-inner-icon="mdi-head-lightbulb-outline"
-                          color="cyan"></v-text-field>
-            <IconSelector v-model="icon" title="Main Icon"></IconSelector>
+                          :color="user.settings.color"></v-text-field>
+            <IconSelector v-model="icon" title="Main Icon" :color="user.settings.color"></IconSelector>
           </v-form>
         </v-card-text>
 
@@ -41,7 +41,7 @@
           <v-btn color="grey" text @click="hide">
             Cancel
           </v-btn>
-          <v-btn color="cyan" text @click="save">
+          <v-btn :color="user.settings.color" text @click="save">
             Save
           </v-btn>
         </v-card-actions>

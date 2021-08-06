@@ -6,18 +6,18 @@
       <v-icon>{{value}}</v-icon>
     </v-btn>
 
-    <v-text-field ref="textField" v-else v-model="value" :label="title" :prepend-inner-icon="value" color="cyan" readonly @click="show" append-icon="mdi-close" @click:append="$emit('input','mdi-blank')"></v-text-field>
+    <v-text-field ref="textField" v-else v-model="value" :label="title" :prepend-inner-icon="value" :color="color" readonly @click="show" append-icon="mdi-close" @click:append="$emit('input','mdi-blank')"></v-text-field>
 
     <v-dialog v-model="isShow" max-width="400" v-on:click:outside="clickOutside">
       <v-card>
-        <v-card-title class="text-h5 grey lighten-4 cyan--text">
-          <v-icon class="mr-1 cyan--text">mdi-file-table-box-multiple-outline</v-icon>
+        <v-card-title class="text-h5 grey lighten-4" :class="color+'--text'">
+          <v-icon class="mr-1" :color="color">mdi-file-table-box-multiple-outline</v-icon>
           Icons
         </v-card-title>
 
         <v-card-text class="py-4 px-4">
           <div class="">
-            <v-text-field v-model="search" label="Search Icon" append-icon="mdi-magnify" :hint="searching.length+ ' icons'" color="cyan" clearable></v-text-field>
+            <v-text-field v-model="search" label="Search Icon" append-icon="mdi-magnify" :hint="searching.length+ ' icons'" :color="color" clearable></v-text-field>
           </div>
           <div class="overflow-auto" style="max-height: 400px">
 
@@ -25,7 +25,7 @@
               <template v-slot:default="{ item }">
                 <v-list-item :key="item" class="grey lighten-4" link style="height: 54px" @click="setIcon(item)">
                   <v-list-item-avatar>
-                    <v-icon color="cyan">{{ item }}</v-icon>
+                    <v-icon :color="color">{{ item }}</v-icon>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
@@ -54,7 +54,7 @@
         <!--        <v-btn color="grey" text @click="hide">-->
         <!--          Cancel-->
         <!--        </v-btn>-->
-        <!--        <v-btn color="cyan" text>-->
+        <!--        <v-btn :color="user.settings.color" text>-->
         <!--          Select-->
         <!--        </v-btn>-->
         <!--      </v-card-actions>-->
@@ -88,6 +88,9 @@ export default {
     },
     btn : {
       default: false
+    },
+    color : {
+      default : "grey"
     }
   },
   computed: {

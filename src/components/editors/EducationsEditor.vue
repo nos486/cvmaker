@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-btn icon color="cyan" @click="show">
+    <v-btn icon :color="user.settings.color" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
       <v-card>
-        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4 cyan--text">
-          <div class="d-flex align-center">
-            <v-icon left class="cyan--text">mdi-account-edit</v-icon>
+        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4">
+          <div class="d-flex align-center" :class="user.settings.color+'--text'">
+            <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
             Educations
           </div>
           <div class="d-flex align-center ml-2">
@@ -20,7 +20,7 @@
 
         <div class="d-flex flex-column pa-0">
 
-          <v-tabs v-model="tab" color="cyan" background-color="grey lighten-4" centered vertical hide-slider>
+          <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
 
             <v-tab v-for="(education,index) in educations" :key="index" :title="education.field">
               <div class="text-truncate" style="max-width: 56px">
@@ -44,12 +44,12 @@
                     </v-btn>
                   </div>
                   <v-form :ref="'formEducations'+index" v-model="isFormValid">
-                    <v-text-field v-model="education.school" class="mt-4" label="School" prepend-inner-icon="mdi-office-building" color="cyan" :rules="schoolRules"></v-text-field>
-                    <v-text-field v-model="education.field" label="Field" prepend-inner-icon="mdi-school" color="cyan" :rules="fieldRules"></v-text-field>
-                    <v-text-field v-model="education.degree" label="Degree" prepend-inner-icon="mdi-license" color="cyan" :rules="degreeRules"></v-text-field>
+                    <v-text-field v-model="education.school" class="mt-4" label="School" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="schoolRules"></v-text-field>
+                    <v-text-field v-model="education.field" label="Field" prepend-inner-icon="mdi-school" :color="user.settings.color" :rules="fieldRules"></v-text-field>
+                    <v-text-field v-model="education.degree" label="Degree" prepend-inner-icon="mdi-license" :color="user.settings.color" :rules="degreeRules"></v-text-field>
                     <DateSelector title="Start Date" v-model="education.startDate" required></DateSelector>
                     <DateSelector title="End Date" v-model="education.endDate" required></DateSelector>
-                    <v-textarea v-model="education.description" color="cyan" rows="3" label="Description" hide-details></v-textarea>
+                    <v-textarea v-model="education.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
                   </v-form>
 
                 </v-form>
@@ -67,7 +67,7 @@
           <v-btn color="grey" text @click="hide">
             Cancel
           </v-btn>
-          <v-btn color="cyan" text @click="save">
+          <v-btn :color="user.settings.color" text @click="save">
             Save
           </v-btn>
         </v-card-actions>
