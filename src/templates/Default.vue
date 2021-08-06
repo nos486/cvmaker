@@ -34,7 +34,7 @@ import Licenses from "@/templates/basic/Licenses";
 import UserBasic from "@/templates/basic/UserBasic";
 
 export default {
-    name: 'Starter',
+    name: 'Default',
     components: {
       UserBasic,
       Licenses,

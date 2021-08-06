@@ -8,7 +8,7 @@
 
 
 import Nav from "@/components/Nav";
-import Starter from "@/templates/Starter";
+import Starter from "@/templates/Default";
 export default {
     name:'Cv',
     components: {Starter, Nav},

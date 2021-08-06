@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Cv from '../views/Cv'
-import Base from '../templates/Starter'
+import UserPublic from '../views/UserPublic'
 
 Vue.use(VueRouter)
 
@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/cv/:username',
-    component: Base
+    component: UserPublic
   },
   {
     path: '/about',
