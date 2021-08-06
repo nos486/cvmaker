@@ -1,6 +1,3 @@
-import Experience from "@/models/Experience.model";
-import Education from "@/models/Education.model";
-import License from "@/models/License.model";
 
 export default class User {
     get icon() {
@@ -249,6 +246,7 @@ export default class User {
      * @param gender
      * @param email
      * @param headLine
+     * @param icon
      * @param phone
      * @param website
      * @param github
