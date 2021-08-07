@@ -1,80 +1,49 @@
 <template>
-  <div>
-    <v-btn icon :color="user.settings.color" @click="show">
-      <v-icon>mdi-account-edit</v-icon>
-    </v-btn>
-    <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
-      <v-card>
-        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4 cyan--text">
-          <div class="d-flex align-center" :class="user.settings.color+'--text'">
-            <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
-            Licenses
-          </div>
-          <div class="d-flex align-center ml-2">
-            <v-btn color="green" text @click="addTab">
-              <v-icon>mdi-plus</v-icon>
-              ADD
-            </v-btn>
-          </div>
-        </v-card-title>
+  <EditDialog ref="dialog" title="Licenses" :color="user.settings.color" v-on:show="show" v-on:save="save" edge-less>
+    <template v-slot:header>
+      <v-btn color="green" text @click="addTab">
+        <v-icon>mdi-plus</v-icon>
+        ADD
+      </v-btn>
+    </template>
 
-        <div class="d-flex flex-column pa-0">
+    <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
 
-          <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
-
-            <v-tab v-for="(license,index) in licenses" :key="index" :title="license.name">
-              <div class="text-truncate" style="max-width: 56px">
-              {{ index+1 }}
-              </div>
-            </v-tab>
-
-            <v-tabs-items v-model="tab" vertical >
-              <v-tab-item v-for="(license,index) in licenses" :key="index">
-                <v-form ref="form" class="py-4 px-4">
-                  <div class="d-flex">
-                    <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
-                      <v-icon>mdi-arrow-up</v-icon>
-                    </v-btn>
-                    <v-btn icon :disabled="index===license.length-1" title="Move Tab Down" @click="moveTabDown(index)">
-                      <v-icon>mdi-arrow-down</v-icon>
-                    </v-btn>
-                    <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
-                      <v-icon left>mdi-delete</v-icon>
-                      Delete
-                    </v-btn>
-                  </div>
-                  <v-form :ref="'formLicenses'+index" v-model="isFormValid">
-                    <v-text-field v-model="license.name" class="mt-4" label="Name" prepend-inner-icon="mdi-license" :color="user.settings.color" :rules="nameRules"></v-text-field>
-                    <v-text-field v-model="license.issuingOrganization" label="Issuing Organization" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="issuingOrganizationRules"></v-text-field>
-                    <DateSelector title="Issue Date" v-model="license.issueDate" required></DateSelector>
-                    <v-text-field v-model="license.credentialID" label="Credential ID" prepend-inner-icon="mdi-identifier" :color="user.settings.color" ></v-text-field>
-                    <v-text-field v-model="license.credentialUrl" label="Credential Url" prepend-inner-icon="mdi-web" :color="user.settings.color" ></v-text-field>
-                  </v-form>
-
-                </v-form>
-              </v-tab-item>
-            </v-tabs-items>
-
-          </v-tabs>
-          
+      <v-tab v-for="(license,index) in licenses" :key="index" :title="license.name">
+        <div class="text-truncate" style="max-width: 56px">
+          {{ index+1 }}
         </div>
+      </v-tab>
 
-        <v-divider></v-divider>
+      <v-tabs-items v-model="tab" vertical >
+        <v-tab-item v-for="(license,index) in licenses" :key="index">
+          <v-form ref="form" class="py-4 px-4">
+            <div class="d-flex">
+              <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
+                <v-icon>mdi-arrow-up</v-icon>
+              </v-btn>
+              <v-btn icon :disabled="index===license.length-1" title="Move Tab Down" @click="moveTabDown(index)">
+                <v-icon>mdi-arrow-down</v-icon>
+              </v-btn>
+              <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
+                <v-icon left>mdi-delete</v-icon>
+                Delete
+              </v-btn>
+            </div>
+            <v-form :ref="'formLicenses'+index" v-model="isFormValid">
+              <v-text-field v-model="license.name" class="mt-4" label="Name" prepend-inner-icon="mdi-license" :color="user.settings.color" :rules="nameRules"></v-text-field>
+              <v-text-field v-model="license.issuingOrganization" label="Issuing Organization" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="issuingOrganizationRules"></v-text-field>
+              <DateSelector title="Issue Date" v-model="license.issueDate" required></DateSelector>
+              <v-text-field v-model="license.credentialID" label="Credential ID" prepend-inner-icon="mdi-identifier" :color="user.settings.color" ></v-text-field>
+              <v-text-field v-model="license.credentialUrl" label="Credential Url" prepend-inner-icon="mdi-web" :color="user.settings.color" ></v-text-field>
+            </v-form>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="grey" text @click="hide">
-            Cancel
-          </v-btn>
-          <v-btn :color="user.settings.color" text @click="save">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+          </v-form>
+        </v-tab-item>
+      </v-tabs-items>
 
-
+    </v-tabs>
+  </EditDialog>
 </template>
 
 <script>
@@ -83,12 +52,12 @@ import {moveItemInArray} from "@/helpers"
 import UserModel from "@/models/User.model";
 import IconSelector from "@/components/IconSelector";
 import DateSelector from "@/components/DateSelector";
+import EditDialog from "@/components/ui/EditDialog";
 
 export default {
   name: 'LicensesEditor',
-  components: {DateSelector},
+  components: {EditDialog, DateSelector},
   data: () => ({
-    isShow: false,
     tab: null,
     isFormValid: true,
     licenses: [],
@@ -107,14 +76,9 @@ export default {
   computed: {},
   methods: {
     show() {
-      this.isShow = true
       // this.tab = null
       this.licenses = JSON.parse(JSON.stringify(this.user.licenses));
     },
-    hide() {
-      this.isShow = false
-    },
-
     addTab() {
       this.licenses.push({
         name: "",
@@ -178,7 +142,7 @@ export default {
           this.$store.dispatch("updateUserData", data).then(() => {
             this.$toast.success("User updated.")
             this.tab = null
-            this.hide()
+            this.$refs.dialog.hide()
           })
         }
       })

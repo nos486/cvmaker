@@ -1,7 +1,7 @@
 <template>
   <div class="container px-0 py-0">
     <Nav></Nav>
-    <Starter :user="$store.getters.user"></Starter>
+    <Starter :user="$store.getters.user" editable></Starter>
   </div>
 </template>
 <script>

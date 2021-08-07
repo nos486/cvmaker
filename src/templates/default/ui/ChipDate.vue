@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import IconText from "@/templates/basic/ui/IconText";
+import IconText from "@/templates/default/ui/IconText";
 import {numberToMonthName} from "@/helpers";
 
 export default {

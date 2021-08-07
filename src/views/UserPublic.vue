@@ -1,6 +1,6 @@
 <template>
   <div class="container px-0 py-0">
-    <Default :user="$store.getters.user"></Default>
+    <Default :user="$store.getters.user" :editable="false"></Default>
   </div>
 </template>
 <script>

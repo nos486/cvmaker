@@ -1,5 +1,5 @@
 <template>
-    <item v-if="user.languages.length > 0" title="Languages" :color="user.settings.color">
+    <item title="Languages" :color="user.settings.color" :hidden="user.languages.length === 0" :editable="editable">
       <template v-slot:edit>
         <LanguageEditor :user="user"></LanguageEditor>
       </template>
@@ -7,7 +7,7 @@
     </item>
 </template>
 <script>
-import Item from "@/templates/basic/ui/Item"
+import Item from "@/templates/default/ui/Item"
 import UserModel from "@/models/User.model";
 import LanguageEditor from "@/components/editors/LanguageEditor";
 
@@ -17,7 +17,11 @@ export default {
     props: {
         user: {
             type: UserModel
-        }
+        },
+      editable: {
+        type : Boolean,
+        default : true
+      },
     }
 }
 </script>

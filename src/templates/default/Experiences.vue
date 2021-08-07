@@ -1,5 +1,5 @@
 <template>
-  <item v-if="user.experiences.length > 0" title="Experience" :color="user.settings.color">
+  <item title="Experience" :color="user.settings.color" :hidden="user.experiences.length === 0" :editable="editable">
     <template v-slot:edit>
       <ExperiencesEditor :user="user"></ExperiencesEditor>
     </template>
@@ -20,12 +20,12 @@
 </template>
 <script>
 
-import Item from "@/templates/basic/ui/Item"
-import SubItem from "@/templates/basic/ui/SubItem"
+import Item from "@/templates/default/ui/Item"
+import SubItem from "@/templates/default/ui/SubItem"
 import UserModel from "@/models/User.model";
 import {numberToMonthName} from "@/helpers"
 import ExperiencesEditor from "@/components/editors/ExpriencesEditor";
-import ChipDate from "@/templates/basic/ui/ChipDate";
+import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Experiences',
@@ -33,7 +33,11 @@ export default {
   props: {
     user: {
       type: UserModel
-    }
+    },
+    editable: {
+      type : Boolean,
+      default : true
+    },
   },
 
 }

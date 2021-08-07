@@ -1,84 +1,53 @@
 <template>
-  <div>
-    <v-btn icon :color="user.settings.color" @click="show">
-      <v-icon>mdi-account-edit</v-icon>
-    </v-btn>
-    <v-dialog v-model="isShow" max-width="750" v-on:click:outside="hide">
-      <v-card>
-        <v-card-title class="d-flex justify-space-between text-h5 grey lighten-4">
-          <div class="d-flex align-center" :class="user.settings.color+'--text'">
-            <v-icon left :color="user.settings.color">mdi-account-edit</v-icon>
-            Experiences
-          </div>
-          <div class="d-flex align-center ml-2">
-            <v-btn color="green" text @click="addTab">
-              <v-icon>mdi-plus</v-icon>
-              ADD
-            </v-btn>
-          </div>
-        </v-card-title>
+  <EditDialog ref="dialog" title="Experiences" :color="user.settings.color" v-on:show="show" v-on:save="save" edge-less>
+    <template v-slot:header>
+      <v-btn color="green" text @click="addTab">
+        <v-icon>mdi-plus</v-icon>
+        ADD
+      </v-btn>
+    </template>
 
-        <div class="d-flex flex-column pa-0">
+    <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
 
-          <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
+      <v-tab v-for="(experience,index) in experiences" :key="index" :title="experience.title">
+        <v-icon>{{ experience.icon }}</v-icon>
+      </v-tab>
 
-            <v-tab v-for="(experience,index) in experiences" :key="index" :title="experience.title">
-              <v-icon>{{ experience.icon }}</v-icon>
-            </v-tab>
+      <v-tabs-items v-model="tab" vertical >
+        <v-tab-item v-for="(experience,index) in experiences" :key="index">
+          <v-form ref="form" class="py-4 px-4">
+            <div class="d-flex">
+              <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
+                <v-icon>mdi-arrow-up</v-icon>
+              </v-btn>
+              <v-btn icon :disabled="index===experiences.length-1" title="Move Tab Down" @click="moveTabDown(index)">
+                <v-icon>mdi-arrow-down</v-icon>
+              </v-btn>
+              <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
+                <v-icon left>mdi-delete</v-icon>
+                Delete
+              </v-btn>
+            </div>
+            <v-form :ref="'formExperience'+index" v-model="isFormValid">
+              <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" :color="user.settings.color" :rules="titleRules"></v-text-field>
+              <IconSelector v-model="experience.icon" title="Experience Icon"></IconSelector>
+              <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="companyRules"></v-text-field>
+              <DateSelector title="Start Date" v-model="experience.startDate" required></DateSelector>
+              <div class="d-flex align-center my-n2">
+                <v-icon left>mdi-account-tie</v-icon>
+                Currently working in this role:
+                <v-switch v-model="experience.atThisRole" class="ml-auto" :color="user.settings.color" dense ></v-switch>
+              </div>
+              <DateSelector v-if="! experience.atThisRole" title="End Date" v-model="experience.endDate" required></DateSelector>
+              <v-textarea v-model="experience.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
+            </v-form>
 
-            <v-tabs-items v-model="tab" vertical >
-              <v-tab-item v-for="(experience,index) in experiences" :key="index">
-                <v-form ref="form" class="py-4 px-4">
-                  <div class="d-flex">
-                    <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
-                      <v-icon>mdi-arrow-up</v-icon>
-                    </v-btn>
-                    <v-btn icon :disabled="index===experiences.length-1" title="Move Tab Down" @click="moveTabDown(index)">
-                      <v-icon>mdi-arrow-down</v-icon>
-                    </v-btn>
-                    <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
-                      <v-icon left>mdi-delete</v-icon>
-                      Delete
-                    </v-btn>
-                  </div>
-                  <v-form :ref="'formExperience'+index" v-model="isFormValid">
-                    <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" :color="user.settings.color" :rules="titleRules"></v-text-field>
-                    <IconSelector v-model="experience.icon" title="Experience Icon"></IconSelector>
-                    <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="companyRules"></v-text-field>
-                    <DateSelector title="Start Date" v-model="experience.startDate" required></DateSelector>
-                    <div class="d-flex align-center my-n2">
-                      <v-icon left>mdi-account-tie</v-icon>
-                      Currently working in this role:
-                      <v-switch v-model="experience.atThisRole" class="ml-auto" :color="user.settings.color" dense ></v-switch>
-                    </div>
-                    <DateSelector v-if="! experience.atThisRole" title="End Date" v-model="experience.endDate" required></DateSelector>
-                    <v-textarea v-model="experience.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
-                  </v-form>
+          </v-form>
+        </v-tab-item>
+      </v-tabs-items>
 
-                </v-form>
-              </v-tab-item>
-            </v-tabs-items>
-
-          </v-tabs>
-          
-        </div>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="grey" text @click="hide">
-            Cancel
-          </v-btn>
-          <v-btn :color="user.settings.color" text @click="save">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
-
-
+    </v-tabs>
+  </EditDialog>
 </template>
 
 <script>
@@ -87,12 +56,12 @@ import {moveItemInArray} from "@/helpers"
 import UserModel from "@/models/User.model";
 import IconSelector from "@/components/IconSelector";
 import DateSelector from "@/components/DateSelector";
+import EditDialog from "@/components/ui/EditDialog";
 
 export default {
   name: 'ExperiencesEditor',
-  components: {DateSelector, IconSelector},
+  components: {EditDialog, DateSelector, IconSelector},
   data: () => ({
-    isShow: false,
     tab: null,
     isFormValid: true,
     experiences: [],
@@ -111,7 +80,6 @@ export default {
   computed: {},
   methods: {
     show() {
-      this.isShow = true
       // this.tab = null
       this.experiences = JSON.parse(JSON.stringify(this.user.experiences));
     },
@@ -185,7 +153,7 @@ export default {
           this.$store.dispatch("updateUserData", data).then(() => {
             this.$toast.success("User updated.")
             this.tab = null
-            this.hide()
+            this.$refs.dialog.hide()
           })
         }
       })

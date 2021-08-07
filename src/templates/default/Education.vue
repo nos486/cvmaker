@@ -1,7 +1,7 @@
 <template>
-  <item v-if="user.educations.length > 0" title="Educations" :color="user.settings.color">
+  <item title="Educations" :color="user.settings.color" :hidden="user.educations.length === 0" :editable="editable">
     <template v-slot:edit>
-      <EducationsEditor :user="user"></EducationsEditor>
+      <EducationsEditor :user="user" ></EducationsEditor>
     </template>
     <div v-for="(education,index) in user.educations" :key="index" >
       <SubItem :title="education.school"  :color="user.settings.color">
@@ -15,12 +15,12 @@
 </template>
 <script>
 
-import Item from "@/templates/basic/ui/Item"
-import SubItem from "@/templates/basic/ui/SubItem"
+import Item from "@/templates/default/ui/Item"
+import SubItem from "@/templates/default/ui/SubItem"
 import UserModel from "@/models/User.model";
 import EducationsEditor from "@/components/editors/EducationsEditor";
 import {numberToMonthName} from "@/helpers";
-import ChipDate from "@/templates/basic/ui/ChipDate";
+import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Education',
@@ -28,7 +28,11 @@ export default {
   props: {
     user: {
       type: UserModel
-    }
+    },
+    editable: {
+      type : Boolean,
+      default : true
+    },
   },
   methods :{
     dateStingToString(date){

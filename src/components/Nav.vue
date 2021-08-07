@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative">
     <v-app-bar class="px-2" color="transparent" flat height="70" style="position: absolute">
-      <v-row align="center">
+      <v-row>
         <UserController></UserController>
 
         <v-tooltip bottom>

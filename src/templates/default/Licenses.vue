@@ -1,5 +1,5 @@
 <template>
-  <item v-if="user.licenses.length > 0" title="Licenses & certifications" :color="user.settings.color">
+  <item title="Licenses & certifications" :color="user.settings.color" :hidden="user.licenses.length === 0" :editable="editable">
     <template v-slot:edit>
       <LicensesEditor :user="user"></LicensesEditor>
     </template>
@@ -26,12 +26,12 @@
 </template>
 <script>
 
-import Item from "@/templates/basic/ui/Item"
-import SubItem from "@/templates/basic/ui/SubItem"
+import Item from "@/templates/default/ui/Item"
+import SubItem from "@/templates/default/ui/SubItem"
 import UserModel from "@/models/User.model";
 import LicensesEditor from "@/components/editors/LicensesEditor";
 import {numberToMonthName} from "@/helpers";
-import ChipDate from "@/templates/basic/ui/ChipDate";
+import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Licenses',
@@ -39,7 +39,11 @@ export default {
   props: {
     user: {
       type: UserModel
-    }
+    },
+    editable: {
+      type : Boolean,
+      default : true
+    },
   },
   methods :{
     dateStingToString(date){

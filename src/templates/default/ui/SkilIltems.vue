@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import IconText from "@/templates/basic/ui/IconText";
+import IconText from "@/templates/default/ui/IconText";
 export default {
     name: "SkillItems",
   components: {IconText},
