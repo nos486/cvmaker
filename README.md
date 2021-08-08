@@ -1,4 +1,9 @@
-# cvmaker
+# ResuMax
+Resume maker vue client for [ResumaxAPI](https://github.com/nos486/resumaxapi)
+
+> Project deployed on [resumax.ir](https://resumax.ir)
+> 
+![resumax.ir](screenshots/1.png)
 
 ## Project setup
 ```
@@ -14,11 +19,3 @@ yarn serve
 ```
 yarn build
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
