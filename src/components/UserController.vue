@@ -1,7 +1,7 @@
 <template>
-  <div>
-
-    <v-menu v-if="$store.getters.user != null" offset-y content-class="mt-2">
+  <div v-if="user != null">
+    <UserSettings ref="userSettings" :user="user" ></UserSettings>
+    <v-menu offset-y content-class="mt-2">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="cyan" icon x-large v-bind="attrs" v-on="on">
           <v-icon>mdi-menu</v-icon>
@@ -11,17 +11,17 @@
         <v-list>
           <v-list-item two-line>
             <v-list-item-avatar>
-              <AvatarImage :id="$store.getters.user.id" size="60"></AvatarImage>
+              <v-img :src="user.avatar" ></v-img>
             </v-list-item-avatar>
             <v-list-item-content class="ml-2">
-              <v-list-item-title class="text-h5 cyan--text text-capitalize">{{ $store.getters.user.firstName }} {{ $store.getters.user.lastName }}</v-list-item-title>
-              <v-list-item-subtitle>{{ $store.getters.user.email }}</v-list-item-subtitle>
+              <v-list-item-title class="text-h5 cyan--text text-capitalize">{{ user.firstName }} {{ user.lastName }}</v-list-item-title>
+              <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
-        <v-divider></v-divider>
+          <v-divider></v-divider>
 
-          <v-list-item link disabled>
+          <v-list-item link @click="$refs.userSettings.show()">
             <v-list-item-icon>
               <v-icon>mdi-account-cog</v-icon>
             </v-list-item-icon>
@@ -44,27 +44,27 @@
 
       </v-card>
     </v-menu>
-
   </div>
+
 </template>
 
 <script>
 
-import AvatarImage from "@/components/ui/AvatarImage";
+import User from "@/models/User.model";
+import UserSettings from "@/components/UserSettings";
 export default {
   name: "UserController",
-  components: {AvatarImage},
+  components: {UserSettings},
   data: () => ({
 
   }),
+  props : {
+    user: {
+      type: User
+    },
+  },
   mounted() {
 
-
-    if(!this.$store.getters.isLoggedIn){
-      this.$router.push("/")
-    }else {
-      this.$store.dispatch("getUser")
-    }
   },
   methods: {
     logoutClicked: function () {
