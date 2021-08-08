@@ -30,7 +30,7 @@
             </div>
             <v-form :ref="'formExperience'+index" v-model="isFormValid">
               <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" :color="user.settings.color" :rules="titleRules"></v-text-field>
-              <IconSelector v-model="experience.icon" title="Experience Icon"></IconSelector>
+              <IconSelector v-model="experience.icon" title="Experience Icon" :color="user.settings.color"></IconSelector>
               <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="companyRules"></v-text-field>
               <DateSelector title="Start Date" v-model="experience.startDate" :color="user.settings.color" required></DateSelector>
               <div class="d-flex align-center my-n2">
