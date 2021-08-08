@@ -1,6 +1,6 @@
 <template>
   <div class="container px-0 py-0">
-    <Nav></Nav>
+    <Nav :user="$store.getters.user"></Nav>
     <Starter :user="$store.getters.user" editable></Starter>
   </div>
 </template>

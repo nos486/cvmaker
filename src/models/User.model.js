@@ -227,7 +227,7 @@ export default class User {
 
     /**
      *
-     * @return {{color:string,type:string}}
+     * @return {{color:string,template:string}}
      */
     get settings() {
         return this._settings;
@@ -261,6 +261,8 @@ export default class User {
      * @param {[Object]} licenses
      * @param {[String]} languages
      * @param {Object} settings
+     * @param avatar
+     *
      */
     constructor({
                     _id,
@@ -284,7 +286,8 @@ export default class User {
                     educations,
                     licenses,
                     languages,
-                    settings
+                    settings,
+                    avatar
                 }) {
         this._id = _id
         this._username = username
@@ -316,7 +319,7 @@ export default class User {
         //     this._licenses.push(new License(license))
         // }
         this._languages = languages
-        this._avatar = ""
+        this._avatar = avatar
         this._settings = settings
 
     }

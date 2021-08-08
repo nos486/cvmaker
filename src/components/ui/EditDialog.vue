@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn icon :color="color" @click="show">
+    <v-btn v-if="!hideButton" icon :color="color" @click="show">
       <v-icon>mdi-account-edit</v-icon>
     </v-btn>
     <v-dialog v-model="isShow" :max-width="width" v-on:click:outside="hide" scrollable>
@@ -56,6 +56,10 @@ export default {
       type : Boolean,
       default : false
     },
+    hideButton :{
+      type : Boolean,
+      default : false
+    }
   },
   computed: {},
   methods: {

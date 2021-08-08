@@ -2,10 +2,10 @@
   <EditDialog ref="dialog" title="Basic" :color="user.settings.color" v-on:show="show" v-on:save="save">
     <v-form ref="form" v-model="isFormValid">
       <div class="d-flex align-center">
-        <v-avatar>
-          <AvatarImage :id="$store.getters.user.id" size="60"></AvatarImage>
+        <v-avatar size="60">
+          <v-img :src="user.avatar"></v-img>
         </v-avatar>
-        <v-file-input v-model="uploadAvatar" class="ml-2" accept="image/*" label="Avatar picture" :color="user.settings.color"></v-file-input>
+        <v-file-input v-model="uploadAvatar" class="ml-2" accept="image/*" label="Avatar picture" :color="user.settings.color" append-icon="mdi-trash-can" @click:append="deleteAvatar"></v-file-input>
       </div>
       <div class="d-flex">
         <v-text-field v-model="firstName" label="First Name" prepend-inner-icon="mdi-account-details"
@@ -28,12 +28,11 @@
 import UserModel from "@/models/User.model";
 import IconSelector from "@/components/IconSelector";
 import DateSelector from "@/components/DateSelector";
-import AvatarImage from "@/components/ui/AvatarImage";
 import EditDialog from "@/components/ui/EditDialog";
 
 export default {
   name: 'BasicEditor',
-  components: {EditDialog, AvatarImage, DateSelector, IconSelector},
+  components: {EditDialog, DateSelector, IconSelector},
   data: () => ({
     isFormValid: false,
     uploadAvatar : null,
@@ -67,8 +66,6 @@ export default {
         icon: this.icon,
       }
 
-      console.log(this.uploadAvatar)
-
       this.$store.dispatch("updateUserData", data).then(() => {
         this.$toast.success("User updated.")
 
@@ -79,9 +76,15 @@ export default {
             this.$toast.success("Avatar updated.")
             this.$refs.dialog.hide()
           })
+          this.uploadAvatar = null
         }else {
           this.$refs.dialog.hide()
         }
+      })
+    },
+    deleteAvatar(){
+      this.$store.dispatch("deleteAvatar").then(()=>{
+        this.$toast.success("Avatar deleted.")
       })
     }
   }
