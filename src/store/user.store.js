@@ -45,7 +45,6 @@ export default {
         login(context, data) {
             return new Promise((resolve, reject) => {
                 axios.post(`${config.apiUrl}/authenticate`, data).then((response) => {
-                    console.log(response.data)
                     context.commit("setToken", response.data)
                     context.dispatch("getUser").then(response => {
                         resolve(response)
@@ -66,6 +65,18 @@ export default {
                 }).catch(err => {
                     // this.$bvToast.toast(err.toString())
                     reject()
+                })
+            })
+        },
+        register(context, data) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.post(`${config.apiUrl}/register`, data).then((response) => {
+                    context.commit("overlayHide")
+                    resolve(response)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
                 })
             })
         },
@@ -118,6 +129,7 @@ export default {
             context.commit("overlayShow")
             return new Promise((resolve, reject) => {
                 axios.post(`${config.apiUrl}/avatar`, formData).then((response) => {
+                    context.state.user.avatar = response.data.avatar
                     context.commit("overlayHide")
                     resolve(response)
                 }).catch(err => {
@@ -126,7 +138,19 @@ export default {
                 })
             })
         },
-
+        deleteAvatar(context) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.delete(`${config.apiUrl}/avatar`).then((response) => {
+                    context.state.user.avatar = response.data.avatar
+                    context.commit("overlayHide")
+                    resolve(response)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
+                })
+            })
+        },
 
     },
 }
