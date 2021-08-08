@@ -34,8 +34,8 @@
               <v-text-field v-model="education.school" class="mt-4" label="School" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="schoolRules"></v-text-field>
               <v-text-field v-model="education.field" label="Field" prepend-inner-icon="mdi-school" :color="user.settings.color" :rules="fieldRules"></v-text-field>
               <v-text-field v-model="education.degree" label="Degree" prepend-inner-icon="mdi-license" :color="user.settings.color" :rules="degreeRules"></v-text-field>
-              <DateSelector title="Start Date" v-model="education.startDate" required></DateSelector>
-              <DateSelector title="End Date" v-model="education.endDate" required></DateSelector>
+              <DateSelector title="Start Date" v-model="education.startDate" :color="user.settings.color" required></DateSelector>
+              <DateSelector title="End Date" v-model="education.endDate" :color="user.settings.color" required></DateSelector>
               <v-textarea v-model="education.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
             </v-form>
 

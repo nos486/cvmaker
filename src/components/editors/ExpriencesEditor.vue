@@ -32,13 +32,13 @@
               <v-text-field v-model="experience.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title" :color="user.settings.color" :rules="titleRules"></v-text-field>
               <IconSelector v-model="experience.icon" title="Experience Icon"></IconSelector>
               <v-text-field v-model="experience.company" class="mt-2" label="Company" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="companyRules"></v-text-field>
-              <DateSelector title="Start Date" v-model="experience.startDate" required></DateSelector>
+              <DateSelector title="Start Date" v-model="experience.startDate" :color="user.settings.color" required></DateSelector>
               <div class="d-flex align-center my-n2">
                 <v-icon left>mdi-account-tie</v-icon>
                 Currently working in this role:
                 <v-switch v-model="experience.atThisRole" class="ml-auto" :color="user.settings.color" dense ></v-switch>
               </div>
-              <DateSelector v-if="! experience.atThisRole" title="End Date" v-model="experience.endDate" required></DateSelector>
+              <DateSelector v-if="! experience.atThisRole" title="End Date" v-model="experience.endDate" :color="user.settings.color" required></DateSelector>
               <v-textarea v-model="experience.description" :color="user.settings.color" rows="3" label="Description" hide-details></v-textarea>
             </v-form>
 

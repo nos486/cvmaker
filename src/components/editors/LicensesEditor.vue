@@ -33,7 +33,7 @@
             <v-form :ref="'formLicenses'+index" v-model="isFormValid">
               <v-text-field v-model="license.name" class="mt-4" label="Name" prepend-inner-icon="mdi-license" :color="user.settings.color" :rules="nameRules"></v-text-field>
               <v-text-field v-model="license.issuingOrganization" label="Issuing Organization" prepend-inner-icon="mdi-office-building" :color="user.settings.color" :rules="issuingOrganizationRules"></v-text-field>
-              <DateSelector title="Issue Date" v-model="license.issueDate" required></DateSelector>
+              <DateSelector title="Issue Date" v-model="license.issueDate" :color="user.settings.color" required></DateSelector>
               <v-text-field v-model="license.credentialID" label="Credential ID" prepend-inner-icon="mdi-identifier" :color="user.settings.color" ></v-text-field>
               <v-text-field v-model="license.credentialUrl" label="Credential Url" prepend-inner-icon="mdi-web" :color="user.settings.color" ></v-text-field>
             </v-form>
