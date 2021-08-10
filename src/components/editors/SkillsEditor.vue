@@ -34,7 +34,7 @@
             <IconSelector v-model="skill.icon" title="Skill Icon" :color="user.settings.color"></IconSelector>
             <v-text-field v-model="skillItemName" label="Add Sub Skill" prepend-inner-icon="mdi-card-plus"
                           :color="user.settings.color" append-icon="mdi-plus-thick"
-                          @click:append="addSkillItem(skill)"></v-text-field>
+                          @click:append="addSkillItem(skill)" @keydown.enter="addSkillItem(skill)"></v-text-field>
             <div class="d-flex flex-wrap mt-2">
               <v-chip v-for="(skillItem,index) in skill.list" :key="index" class="mr-1 mb-1" :color="user.settings.color"
                       draggable close dark @click:close="removeSkillItem(skill,index)" @dragover="allowDrop"

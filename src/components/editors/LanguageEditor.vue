@@ -2,7 +2,7 @@
   <EditDialog ref="dialog" title="Languages" :color="user.settings.color" v-on:show="show" v-on:save="save">
     <v-text-field v-model="languageItemName" label="Add Language" prepend-inner-icon="mdi-card-plus"
                   :color="user.settings.color" append-icon="mdi-plus-thick"
-                  @click:append="addLanguageItem"></v-text-field>
+                  @click:append="addLanguageItem" @keydown.enter="addLanguageItem"></v-text-field>
     <div class="d-flex flex-wrap mt-2">
       <v-chip v-for="(language,index) in languages" :key="index" class="mr-1 mb-1" :color="user.settings.color"
               draggable close dark @click:close="removeLanguageItem(index)" @dragover="allowDrop"
