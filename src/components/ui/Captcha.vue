@@ -3,7 +3,7 @@
     <div v-if="xmlData !== ''" v-html="xmlData"></div>
     <v-btn v-else style="width: 150px;height: 50px" loading text></v-btn>
     <v-text-field ref="captcha" class="ml-2" v-model="input" label="Captcha" append-icon="mdi-refresh"
-                  @click:append="refresh" :color="color" :rules="inputRules"></v-text-field>
+                  @click:append="refresh" :color="color" :rules="inputRules" @keydown.enter="onEnter"></v-text-field>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     color: {
       type: String,
       default: "blue"
-    }
+    },
   },
 
   data() {
@@ -62,6 +62,9 @@ export default {
           });
 
     },
+    onEnter: function(){
+      this.$emit("enter")
+    }
   }
 }
 </script>

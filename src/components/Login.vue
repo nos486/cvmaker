@@ -18,7 +18,7 @@
                         :type="showPassword ? 'text' : 'password'"
                         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                         @click:append="showPassword = !showPassword" :rules="passwordRules" color="cyan"></v-text-field>
-          <Captcha ref="captcha" v-model="captcha" color="cyan"></Captcha>
+          <Captcha ref="captcha" v-model="captcha" color="cyan" v-on:enter="sendData"></Captcha>
         </v-form>
       </v-card-text>
 

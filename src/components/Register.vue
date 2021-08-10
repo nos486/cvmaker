@@ -24,7 +24,7 @@
           <v-text-field v-model="passwordConfirm" label="Confirm Password" prepend-inner-icon="mdi-key"
                         :rules="confirmPasswordRules" :type="showPassword ? 'text' : 'password'"
                         color="cyan"></v-text-field>
-          <Captcha ref="captcha" v-model="captcha" color="cyan"></Captcha>
+          <Captcha ref="captcha" v-model="captcha" color="cyan" v-on:enter="sendData"></Captcha>
         </v-form>
       </v-card-text>
 
