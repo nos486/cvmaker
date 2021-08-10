@@ -4,8 +4,8 @@
     <Register ref="register"></Register>
     <v-row class="" align="center" justify="center">
       <div class="d-flex flex-column">
-        <v-icon size="280" color="grey" class="">mdi-file-account-outline</v-icon>
-        <div class="text-center display-4 grey--text"><b class="cyan--text">Resu</b>Max</div>
+        <v-icon size="140" color="grey" class="">mdi-file-account-outline</v-icon>
+        <div class="text-center display-3 grey--text"><b class="cyan--text">Resu</b>Max</div>
         <v-row class="mt-5" justify="center" align="center">
           <v-btn color="cyan" large dark @click="loginClicked">
             <v-icon>mdi-login</v-icon>

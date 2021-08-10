@@ -1,12 +1,5 @@
 <template>
   <v-app>
-<!--    <v-alert-->
-<!--        max-width="300"-->
-<!--        border="left"-->
-<!--        type="warning"-->
-<!--        origin="top right"-->
-<!--    ></v-alert>-->
-
     <v-overlay :value="$store.getters.overlay" z-index="1024">
       <v-progress-circular
           indeterminate
