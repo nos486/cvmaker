@@ -57,13 +57,15 @@ export default {
             })
         },
         logout(context){
+            context.commit("overlayShow")
             return new Promise((resolve, reject) => {
                 let data = {"token": context.state.refreshToken}
                 axios.post(`${config.apiUrl}/authenticate/revoke`, data).then((response) => {
                     context.commit("clearTokens")
+                    context.commit("overlayHide")
                     resolve()
                 }).catch(err => {
-                    // this.$bvToast.toast(err.toString())
+                    context.commit("overlayHide")
                     reject()
                 })
             })
