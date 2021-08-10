@@ -18,6 +18,11 @@
         </v-row>
       </div>
     </v-row>
+    <v-footer fixed class="d-flex justify-center align-center">
+      <small class="ml-1">
+        <a href="https://github.com/nos486/resumax">v{{version}}</a>
+      </small>
+    </v-footer>
   </v-container>
 </template>
 
@@ -25,10 +30,17 @@
 
 import Login from "@/components/Login";
 import Register from "@/components/Register";
+import {version} from '@/../package.json'
+
 export default {
   name: 'Home',
 
   components: {Register, Login},
+  data : ()=>{
+    return {
+      version : version
+    }
+  },
   methods :{
     loginClicked(){
         this.$refs.login.show()
