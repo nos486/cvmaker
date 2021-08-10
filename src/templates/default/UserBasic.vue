@@ -4,9 +4,7 @@
       <BasicEditor v-if="editable" :user="user" class="float-right"></BasicEditor>
     </div>
 
-    <v-avatar size="200" class="" >
-      <v-img :src="user.avatar"></v-img>
-    </v-avatar>
+    <Avatar :user="user" :size="200"></Avatar>
     <div class="d-flex flex-column">
 
       <div :class="user.settings.color+'--text'" class="d-flex align-center justify-end mb-n4">
@@ -33,10 +31,12 @@
 import UserModel from "@/models/User.model";
 import BasicEditor from "@/components/editors/BasicEditor";
 import {numberToMonthName} from "@/helpers";
+import Avatar from "@/components/ui/Avatar";
 
 export default {
   name: "UserBasic",
   components: {
+    Avatar,
     BasicEditor,
   },
   data: function () {

@@ -10,9 +10,7 @@
       <v-card>
         <v-list>
           <v-list-item two-line>
-            <v-list-item-avatar>
-              <v-img :src="user.avatar" ></v-img>
-            </v-list-item-avatar>
+            <Avatar :user="user" ></Avatar>
             <v-list-item-content class="ml-2">
               <v-list-item-title class="text-h5 cyan--text text-capitalize">{{ user.firstName }} {{ user.lastName }}</v-list-item-title>
               <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
@@ -52,9 +50,10 @@
 
 import User from "@/models/User.model";
 import UserSettings from "@/components/UserSettings";
+import Avatar from "@/components/ui/Avatar";
 export default {
   name: "UserController",
-  components: {UserSettings},
+  components: {Avatar, UserSettings},
   data: () => ({
 
   }),

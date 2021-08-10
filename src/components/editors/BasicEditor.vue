@@ -2,9 +2,7 @@
   <EditDialog ref="dialog" title="Basic" :color="user.settings.color" v-on:show="show" v-on:save="save">
     <v-form ref="form" v-model="isFormValid">
       <div class="d-flex align-center">
-        <v-avatar size="60">
-          <v-img :src="user.avatar"></v-img>
-        </v-avatar>
+        <Avatar :user="user" :size="60"></Avatar>
         <v-file-input v-model="uploadAvatar" class="ml-2" accept="image/*" label="Avatar picture" :color="user.settings.color" append-icon="mdi-trash-can" @click:append="deleteAvatar"></v-file-input>
       </div>
       <div class="d-flex">
@@ -29,10 +27,11 @@ import UserModel from "@/models/User.model";
 import IconSelector from "@/components/IconSelector";
 import DateSelector from "@/components/DateSelector";
 import EditDialog from "@/components/ui/EditDialog";
+import Avatar from "@/components/ui/Avatar";
 
 export default {
   name: 'BasicEditor',
-  components: {EditDialog, DateSelector, IconSelector},
+  components: {Avatar, EditDialog, DateSelector, IconSelector},
   data: () => ({
     isFormValid: false,
     uploadAvatar : null,
