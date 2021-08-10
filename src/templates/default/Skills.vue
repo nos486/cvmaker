@@ -1,5 +1,5 @@
 <template>
-  <Item title="Skills" :color="user.settings.color" :hidden="user.educations.length === 0" :editable="editable">
+  <Item title="Skills" :color="user.settings.color" :hidden="user.skills.length === 0" :editable="editable">
     <template v-slot:edit>
       <SkillsEditor :user="user"></SkillsEditor>
     </template>
