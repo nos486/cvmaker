@@ -1,9 +1,5 @@
 <template>
   <div class="d-flex flex-column align-center justify-center">
-    <div class="" style="width: 100%">
-      <BasicEditor v-if="editable" :user="user" class="float-right"></BasicEditor>
-    </div>
-
     <Avatar :user="user" :size="200"></Avatar>
     <div class="d-flex flex-column">
 
@@ -14,7 +10,8 @@
         </div>
 
       </div>
-      <div :class="user.settings.color+'--text'" class="display-3 font-weight-thin text--darken-3 text-capitalize">
+      <div :class="user.settings.color+'--text'"
+           class="display-3 font-weight-thin text--darken-3 text-capitalize">
         <b>{{ user.firstName }}</b> {{ user.lastName }}
       </div>
 
@@ -24,12 +21,12 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
 
 import UserModel from "@/models/User.model";
-import BasicEditor from "@/components/editors/BasicEditor";
 import {numberToMonthName} from "@/helpers";
 import Avatar from "@/components/ui/Avatar";
 
@@ -37,19 +34,13 @@ export default {
   name: "UserBasic",
   components: {
     Avatar,
-    BasicEditor,
   },
   data: function () {
-    return {
-    }
+    return {}
   },
   props: {
     user: {
       type: UserModel
-    },
-    editable: {
-      type : Boolean,
-      default : true
     },
   },
   methods: {

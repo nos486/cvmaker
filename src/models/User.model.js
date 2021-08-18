@@ -1,5 +1,6 @@
 
 export default class User {
+
     get icon() {
         return this._icon;
     }
@@ -227,7 +228,11 @@ export default class User {
 
     /**
      *
-     * @return {{color:string,template:string}}
+     * @return {{
+     * color:string,
+     * template:string,
+     * templateSettings:Object
+     * }}
      */
     get settings() {
         return this._settings;
@@ -321,6 +326,10 @@ export default class User {
         this._languages = languages
         this._avatar = avatar
         this._settings = settings
+
+        if (this._settings.templateSettings === undefined){
+            this._settings.templateSettings = {c1:["basic", "contact","skills","languages"],c2:["about","experiences","educations","licenses"]}
+        }
 
     }
 

@@ -51,7 +51,8 @@ export default {
       let data = {
         settings: {
           color : this.color,
-          template : this.template
+          template : this.template,
+          templateSettings : this.user.settings.templateSettings
         }
       }
 

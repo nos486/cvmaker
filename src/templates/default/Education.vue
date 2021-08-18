@@ -1,8 +1,5 @@
 <template>
-  <item title="Educations" :color="user.settings.color" :hidden="user.educations.length === 0" :editable="editable">
-    <template v-slot:edit>
-      <EducationsEditor :user="user" ></EducationsEditor>
-    </template>
+  <item title="Educations" :color="user.settings.color" :hidden="user.educations.length === 0">
     <div v-for="(education,index) in user.educations" :key="index" >
       <SubItem :title="education.school"  :color="user.settings.color">
         <div class="d-flex align-center">
@@ -24,7 +21,7 @@ import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Education',
-  components: {ChipDate, EducationsEditor, Item, SubItem},
+  components: {ChipDate, Item, SubItem},
   props: {
     user: {
       type: UserModel

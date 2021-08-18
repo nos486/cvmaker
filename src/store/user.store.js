@@ -7,14 +7,15 @@ export default {
     state: {
         jwtToken: localStorage.getItem("jwtToken") || "",
         refreshToken: localStorage.getItem("refreshToken") || "",
-        user: null
+        user: null,
+        needToSaveScheme : false
     },
     getters: {
         isLoggedIn: state => !!state.refreshToken,
         jwtToken: state => state.jwtToken,
-        user: state => state.user
-    }
-    ,
+        user: state => state.user,
+        needToSaveScheme : state => state.needToSaveScheme
+    },
     mutations: {
         /**
          *
@@ -26,7 +27,7 @@ export default {
             state.refreshToken = data.refreshToken
             localStorage.setItem("refreshToken", data.refreshToken)
             localStorage.setItem("jwtToken", data.jwtToken)
-            axios.defaults.headers.common['Authorization'] = "Bearer "+ data.jwtToken
+            axios.defaults.headers.common['Authorization'] = "Bearer " + data.jwtToken
         },
 
         clearTokens: (state) => {
@@ -35,6 +36,9 @@ export default {
             localStorage.removeItem("refreshToken")
             localStorage.removeItem("jwtToken")
         },
+        needToSaveScheme:(state,value=true) =>{
+            state.needToSaveScheme = value
+        }
     },
     actions: {
         /**
@@ -48,7 +52,7 @@ export default {
                     context.commit("setToken", response.data)
                     context.dispatch("getUser").then(response => {
                         resolve(response)
-                    }).catch((err)=>{
+                    }).catch((err) => {
                         reject(err)
                     })
                 }).catch(err => {
@@ -56,7 +60,7 @@ export default {
                 })
             })
         },
-        logout(context){
+        logout(context) {
             context.commit("overlayShow")
             return new Promise((resolve, reject) => {
                 let data = {"token": context.state.refreshToken}
@@ -82,13 +86,16 @@ export default {
                 })
             })
         },
-        getUser(context,username=null) {
+        getUser(context, username = null) {
+            context.commit("overlayShow")
             return new Promise((resolve, reject) => {
                 let url = (username) ? `${config.apiUrl}/users/${username}` : `${config.apiUrl}/user`
                 axios.get(url).then((response) => {
                     context.state.user = new User(response.data)
+                    context.commit("overlayHide")
                     resolve(response)
                 }).catch(err => {
+                    context.commit("overlayHide")
                     reject(err)
                 })
             })
@@ -101,7 +108,7 @@ export default {
                     resolve(response)
                 }).catch(err => {
                     context.commit("clearTokens")
-                    router.push("/").then(()=>{
+                    router.push("/").then(() => {
                         reject(err)
                     })
                 })

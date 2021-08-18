@@ -10,6 +10,14 @@ export const store = new Vuex.Store({
         editable : true,
         overlay : false
     },
+    getters :{
+        editable : state => {
+            return state.editable
+        },
+        overlay : state => {
+            return state.overlay
+        }
+    },
     mutations: {
         setEditable : (state,value)=>{
             state.editable = value
@@ -20,15 +28,6 @@ export const store = new Vuex.Store({
         overlayHide : (state => {
             state.overlay = false
         })
-    },
-    getters :{
-        editable : state => {
-            return state.editable
-        },
-        overlay : state => {
-            return state.overlay
-        }
-
     },
     actions: {
 

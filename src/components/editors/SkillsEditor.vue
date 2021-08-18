@@ -6,11 +6,12 @@
         ADD
       </v-btn>
     </template>
-    <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical hide-slider>
+    <v-tabs v-model="tab" :color="user.settings.color" background-color="grey lighten-4" centered vertical
+            hide-slider>
 
       <v-tab v-for="(skill,index) in skills" :key="index" :title="skill.title">
         <v-icon v-if="skill.icon !== 'mdi-blank'">{{ skill.icon }}</v-icon>
-        <div v-else class="text-truncate" style="max-width: 56px">{{skill.title}}</div>
+        <div v-else class="text-truncate" style="max-width: 56px">{{ skill.title }}</div>
       </v-tab>
 
       <v-tabs-items v-model="tab" vertical>
@@ -20,7 +21,8 @@
               <v-btn icon :disabled="index===0" title="Move Tab Up" @click="moveTabUp(index)">
                 <v-icon>mdi-arrow-up</v-icon>
               </v-btn>
-              <v-btn icon :disabled="index===skills.length-1" title="Move Tab Down" @click="moveTabDown(index)">
+              <v-btn icon :disabled="index===skills.length-1" title="Move Tab Down"
+                     @click="moveTabDown(index)">
                 <v-icon>mdi-arrow-down</v-icon>
               </v-btn>
               <v-btn class="ml-auto" color="red" text title="Delete Tab" @click="removeTab(index)">
@@ -29,16 +31,22 @@
               </v-btn>
             </div>
 
-            <v-text-field v-model="skill.title" class="mt-4" label="Title" prepend-inner-icon="mdi-format-title"
+            <v-text-field v-model="skill.title" class="mt-4" label="Title"
+                          prepend-inner-icon="mdi-format-title"
                           :color="user.settings.color"></v-text-field>
-            <IconSelector v-model="skill.icon" title="Skill Icon" :color="user.settings.color"></IconSelector>
+            <IconSelector v-model="skill.icon" title="Skill Icon"
+                          :color="user.settings.color"></IconSelector>
             <v-text-field v-model="skillItemName" label="Add Sub Skill" prepend-inner-icon="mdi-card-plus"
                           :color="user.settings.color" append-icon="mdi-plus-thick"
-                          @click:append="addSkillItem(skill)" @keydown.enter="addSkillItem(skill)"></v-text-field>
+                          @click:append="addSkillItem(skill)"
+                          @keydown.enter="addSkillItem(skill)"></v-text-field>
             <div class="d-flex flex-wrap mt-2">
-              <v-chip v-for="(skillItem,index) in skill.list" :key="index" class="mr-1 mb-1" :color="user.settings.color"
-                      draggable close dark @click:close="removeSkillItem(skill,index)" @dragover="allowDrop"
-                      @drop="skillItemDrop($event,skill.list,index)" @dragstart="skillItemDrag($event,index)">
+              <v-chip v-for="(skillItem,index) in skill.list" :key="index" class="mr-1 mb-1"
+                      :color="user.settings.color"
+                      draggable close dark @click:close="removeSkillItem(skill,index)"
+                      @dragover="allowDrop"
+                      @drop="skillItemDrop($event,skill.list,index)"
+                      @dragstart="skillItemDrag($event,index)">
                 {{ skillItem }}
               </v-chip>
             </div>

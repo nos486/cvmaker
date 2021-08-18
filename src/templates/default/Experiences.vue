@@ -1,8 +1,5 @@
 <template>
-  <item title="Experience" :color="user.settings.color" :hidden="user.experiences.length === 0" :editable="editable">
-    <template v-slot:edit>
-      <ExperiencesEditor :user="user"></ExperiencesEditor>
-    </template>
+  <item title="Experience" :color="user.settings.color" :hidden="user.experiences.length === 0">
     <div v-for="(experience,index) in user.experiences" :key="index" >
       <SubItem :title="experience.title" :icon="experience.icon" :color="user.settings.color">
         <div class="d-flex align-center">
@@ -29,7 +26,7 @@ import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Experiences',
-  components: {ChipDate, ExperiencesEditor, Item, SubItem},
+  components: {ChipDate, Item, SubItem},
   props: {
     user: {
       type: UserModel

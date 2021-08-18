@@ -1,9 +1,5 @@
 <template>
-  <item title="About" :color="user.settings.color" :hidden="user.about === ''"
-        :editable="editable">
-    <template v-slot:edit>
-      <AboutEditor :user="user"></AboutEditor>
-    </template>
+  <item title="About" :color="user.settings.color" :hidden="user.about === ''">
     <div style="white-space: pre-line;">{{ user.about }}</div>
   </item>
 </template>
@@ -14,7 +10,7 @@ import AboutEditor from "@/components/editors/AboutEditor";
 
 export default {
   name: 'About',
-  components: {AboutEditor, Item},
+  components: {Item},
   props: {
     user: {
       type: UserModel

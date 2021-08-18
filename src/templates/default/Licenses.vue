@@ -1,8 +1,6 @@
 <template>
-  <item title="Licenses & certifications" :color="user.settings.color" :hidden="user.licenses.length === 0" :editable="editable">
-    <template v-slot:edit>
-      <LicensesEditor :user="user"></LicensesEditor>
-    </template>
+  <item title="Licenses & certifications" :color="user.settings.color" :hidden="user.licenses.length === 0">
+
     <div v-for="(license,index) in user.licenses" :key="index" >
       <SubItem :title="license.name"  :color="user.settings.color">
         <div class="d-flex">
@@ -35,7 +33,7 @@ import ChipDate from "@/templates/default/ui/ChipDate";
 
 export default {
   name: 'Licenses',
-  components: {ChipDate, LicensesEditor, Item, SubItem},
+  components: {ChipDate, Item, SubItem},
   props: {
     user: {
       type: UserModel

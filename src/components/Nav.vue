@@ -1,7 +1,7 @@
 <template>
     <div style="position: relative">
     <v-app-bar class="px-2" color="transparent" flat height="70" style="position: absolute">
-      <v-row>
+      <v-row justify="start" align="center">
         <UserController :user="user"></UserController>
 
         <v-tooltip bottom>
@@ -12,6 +12,19 @@
           </template>
          <span>Public Page</span>
         </v-tooltip>
+
+
+        <div v-if="$store.getters.needToSaveScheme" class="ml-auto">
+          <v-tooltip bottom >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn text color="red" icon x-large v-bind="attrs" v-on="on" @click="saveSchema">
+                <v-icon>mdi-content-save</v-icon>
+              </v-btn>
+            </template>
+            <span>Save Schema</span>
+          </v-tooltip>
+        </div>
+
       </v-row>
     </v-app-bar>
     </div>
@@ -41,6 +54,15 @@ export default {
     goToPublicPage(){
       let route = this.$router.resolve({path: `/cv/${this.user.username}`});
       window.open(route.href, '_blank');
+    },
+    saveSchema(){
+      let data = {
+        settings: this.user.settings
+      }
+      this.$store.dispatch("updateUserData",data).then(()=>{
+        this.$toast.success("Schema updated.")
+        this.$store.commit("needToSaveScheme",false)
+      })
     }
   }
 }
