@@ -86,6 +86,31 @@ export default {
                 })
             })
         },
+        sendEmailVerificationCode(context) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.get(`${config.apiUrl}/register/verifyemail`).then((response) => {
+                    context.commit("overlayHide")
+                    resolve(response.data)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
+                })
+            })
+        },
+        verifyEmail(context, code) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.post(`${config.apiUrl}/register/verifyemail`, {code}).then((response) => {
+                    context.state.user = new User(response.data)
+                    context.commit("overlayHide")
+                    resolve(response.data)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
+                })
+            })
+        },
         getUser(context, username = null) {
             context.commit("overlayShow")
             return new Promise((resolve, reject) => {
@@ -108,9 +133,10 @@ export default {
                     resolve(response)
                 }).catch(err => {
                     context.commit("clearTokens")
-                    router.push("/").then(() => {
-                        reject(err)
-                    })
+                    router.go(0)
+                    // router.push("/").then(() => {
+                    //     reject(err)
+                    // })
                 })
             })
         },
@@ -160,6 +186,7 @@ export default {
                 })
             })
         },
+
 
     },
 }

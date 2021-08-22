@@ -2,7 +2,8 @@
   <v-container v-if="user!=null">
     <v-row justify="center" align="stretch">
       <SegmentColumn class="col-sm-5 col-lg-4 d-flex flex-column grey lighten-3" :template-settings="user.settings.templateSettings" name="c1">
-        <div class="mt-16"></div>
+        <div class="mt-8"></div>
+        <EmailVerifier v-if="editable" :user="$store.getters.user"></EmailVerifier>
         <Segment v-for="(item,index) in user.settings.templateSettings.c1" :key="index" :user="user" :editable="editable" :name="item" parent="c1" class="mt-10">
           <template v-slot:overlay>
             <BasicEditor v-if="item === 'basic'" :user="user"></BasicEditor>
@@ -24,7 +25,7 @@
           <Education v-if="item === 'educations'" :user="user"></Education>
           <Licenses v-if="item === 'licenses'" :user="user"></Licenses>
         </Segment>
-        <div class="mb-16"></div>
+        <div class="mb-8"></div>
       </SegmentColumn>
 
       <SegmentColumn class="col-sm-7" :template-settings="user.settings.templateSettings" name="c2">
@@ -50,7 +51,7 @@
           <Education v-if="item === 'educations'" :user="user"></Education>
           <Licenses v-if="item === 'licenses'" :user="user"></Licenses>
         </Segment>
-        <div class="mb-16"></div>
+        <div class="mb-8"></div>
 
       </SegmentColumn>
       <div class="d-none d-lg-flex col-lg-1 grey lighten-3 ">
@@ -82,11 +83,13 @@ import EducationsEditor from "@/components/editors/EducationsEditor";
 import ExperiencesEditor from "@/components/editors/ExpriencesEditor";
 import LicensesEditor from "@/components/editors/LicensesEditor";
 import SegmentColumn from "@/templates/default/SegmentColumn";
+import EmailVerifier from "@/components/ui/EmailVerifier";
 
 export default {
   name: 'Default',
 
   components: {
+    EmailVerifier,
     SegmentColumn,
     LicensesEditor,
     ExperiencesEditor,

@@ -1,5 +1,13 @@
 
 export default class User {
+    get isEmailVerified() {
+        return this._isEmailVerified;
+    }
+
+    set isEmailVerified(value) {
+        this._isEmailVerified = value;
+    }
+
 
     get icon() {
         return this._icon;
@@ -250,6 +258,7 @@ export default class User {
      * @param lastName
      * @param gender
      * @param email
+     * @param isEmailVerified
      * @param headLine
      * @param icon
      * @param phone
@@ -276,6 +285,7 @@ export default class User {
                     lastName,
                     gender,
                     email,
+                    isEmailVerified,
                     headLine,
                     icon,
                     phone,
@@ -300,6 +310,7 @@ export default class User {
         this._lastName = lastName
         this._gender = gender
         this._email = email
+        this._isEmailVerified = isEmailVerified;
         this._headLine = headLine
         this._icon = icon
         this._phone = phone
@@ -312,17 +323,8 @@ export default class User {
         this._about = about
         this._skills = skills
         this._experiences = experiences
-        // for (const experience of experiences) {
-        //     this._experiences.push(new Experience(experience))
-        // }
         this._educations = educations
-        // for (const education of educations) {
-        //     this._educations.push(new Education(education))
-        // }
         this._licenses = licenses
-        // for (const license of licenses) {
-        //     this._licenses.push(new License(license))
-        // }
         this._languages = languages
         this._avatar = avatar
         this._settings = settings
