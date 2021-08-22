@@ -1,5 +1,5 @@
 <template>
-  <div class="segment rounded " :class="{editable,'grey lighten-2':allowDrag,'grey lighten-4':dragEnterCount>0}" :draggable="editable"
+  <div class="segment rounded" :class="{editable,'grey lighten-2':allowDrag,'grey lighten-4':dragEnterCount>0}" :draggable="editable"
        @dragover="allowDrop"
        @drop="drop($event)"
        @dragstart="drag($event)"
@@ -8,12 +8,15 @@
        @dragend="dragEnd($event)"
   >
 
-    <div v-if="editable" style="position: absolute;width: 100%;z-index: 1">
-      <div class="handle flex-fill" @mouseover="handleMouseDown" @mouseleave="handleMouseleave"></div>
-    </div>
+      <div v-if="editable" style="position: absolute;width: 100%;z-index: 1">
+        <div class="handle flex-fill" @mouseover="handleMouseDown" @mouseleave="handleMouseleave"></div>
+      </div>
 
-    <div v-if="editable" style="position: absolute;right: 0px;z-index: 2">
-      <slot name="overlay"></slot>
+    <div v-if="editable" class="d-flex align-center" style="position: absolute;right: 0px">
+      <v-chip v-if="!allowDrag" small disabled>{{name}}</v-chip>
+      <div style="z-index: 2">
+        <slot class="ml-2" name="overlay" ></slot>
+      </div>
     </div>
 
     <div class="pa-4">
@@ -53,6 +56,11 @@ export default {
       type : String,
       default: "default"
     }
+  },
+  computed :{
+
+  },
+  mounted() {
   },
   methods: {
     allowDrop(ev) {
