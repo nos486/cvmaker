@@ -5,8 +5,7 @@
     <IconText v-if="user.email !== ''" icon="mdi-email" :text="user.email"
               :href="`mailto: ${user.email}`"></IconText>
     <IconText v-if="user.website !== ''" icon="mdi-web" :text="user.website" :href="`${user.website}`"></IconText>
-    <IconText v-if="user.linkedin !== ''" icon="mdi-linkedin" :text="user.linkedin"
-              :href="`${user.licenses}`"></IconText>
+    <IconText v-if="user.linkedin !== ''" icon="mdi-linkedin" :text="user.linkedin" :href="`${user.linkedin}`"></IconText>
     <IconText v-if="user.github !== ''" icon="mdi-github" :text="user.github" :href="`${user.github}`"></IconText>
   </item>
 </template>
