@@ -32,3 +32,9 @@ export default {
   },
 }
 </script>
+
+<style>
+p {
+  margin-bottom: 0px !important;
+}
+</style>
