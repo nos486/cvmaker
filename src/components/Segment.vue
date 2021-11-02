@@ -1,5 +1,5 @@
 <template>
-  <div class="segment rounded" :class="{editable,'grey lighten-2':allowDrag,'grey lighten-4':dragEnterCount>0}" :draggable="editable"
+  <div v-if="user.settings.modules.indexOf(name) > -1" class="segment rounded" :class="{editable,'grey lighten-2':allowDrag,'grey lighten-4':dragEnterCount>0}" :draggable="editable"
        @dragover="allowDrop"
        @drop="drop($event)"
        @dragstart="drag($event)"

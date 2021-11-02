@@ -3,13 +3,14 @@
     <v-row justify="center" align="stretch">
       <SegmentColumn class="col-sm-5 col-lg-4 d-flex flex-column grey lighten-3" :template-settings="user.settings.templateSettings" name="c1">
         <div class="mt-8"></div>
-        <EmailVerifier v-if="editable" :user="$store.getters.user"></EmailVerifier>
+        <EmailVerifier class="mt-10" v-if="editable" :user="$store.getters.user"></EmailVerifier>
         <Segment v-for="(item,index) in user.settings.templateSettings.c1" :key="index" :user="user" :editable="editable" :name="item" parent="c1" class="mt-10">
           <template v-slot:overlay>
             <BasicEditor v-if="item === 'basic'" :user="user"></BasicEditor>
             <ContactEditor v-if="item === 'contact'" :user="user"></ContactEditor>
             <SkillsEditor v-if="item === 'skills'" :user="user"></SkillsEditor>
             <LanguageEditor v-if="item === 'languages'" :user="user"></LanguageEditor>
+            <HighlightEditor v-if="item === 'highlights'" :user="user"></HighlightEditor>
             <AboutEditor v-if="item === 'about'" :user="user"></AboutEditor>
             <ExperiencesEditor v-if="item === 'experiences'" :user="user"></ExperiencesEditor>
             <EducationsEditor v-if="item === 'educations'" :user="user"></EducationsEditor>
@@ -20,6 +21,7 @@
           <Contact v-if="item === 'contact'" :user="user"></Contact>
           <Skills v-if="item === 'skills'" :user="user"></Skills>
           <Languages v-if="item === 'languages'" :user="user"></Languages>
+          <Highlights v-if="item === 'highlights'" :user="user"></Highlights>
           <About v-if="item === 'about'" :user="user"></About>
           <Experiences v-if="item === 'experiences'" :user="user"></Experiences>
           <Education v-if="item === 'educations'" :user="user"></Education>
@@ -36,6 +38,7 @@
             <ContactEditor v-if="item === 'contact'" :user="user"></ContactEditor>
             <SkillsEditor v-if="item === 'skills'" :user="user"></SkillsEditor>
             <LanguageEditor v-if="item === 'languages'" :user="user"></LanguageEditor>
+            <HighlightEditor v-if="item === 'highlights'" :user="user"></HighlightEditor>
             <AboutEditor v-if="item === 'about'" :user="user"></AboutEditor>
             <ExperiencesEditor v-if="item === 'experiences'" :user="user"></ExperiencesEditor>
             <EducationsEditor v-if="item === 'educations'" :user="user"></EducationsEditor>
@@ -46,6 +49,7 @@
           <Contact v-if="item === 'contact'" :user="user"></Contact>
           <Skills v-if="item === 'skills'" :user="user"></Skills>
           <Languages v-if="item === 'languages'" :user="user"></Languages>
+          <Highlights v-if="item === 'highlights'" :user="user"></Highlights>
           <About v-if="item === 'about'" :user="user"></About>
           <Experiences v-if="item === 'experiences'" :user="user"></Experiences>
           <Education v-if="item === 'educations'" :user="user"></Education>
@@ -84,11 +88,15 @@ import ExperiencesEditor from "@/components/editors/ExpriencesEditor";
 import LicensesEditor from "@/components/editors/LicensesEditor";
 import SegmentColumn from "@/templates/default/SegmentColumn";
 import EmailVerifier from "@/components/ui/EmailVerifier";
+import Highlights from "@/templates/default/Highlights";
+import HighlightEditor from "@/components/editors/HighlightEditor";
 
 export default {
   name: 'Default',
 
   components: {
+    HighlightEditor,
+    Highlights,
     EmailVerifier,
     SegmentColumn,
     LicensesEditor,

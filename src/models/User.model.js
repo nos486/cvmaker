@@ -222,6 +222,14 @@ export default class User {
         });
     }
 
+    set highlights(value) {
+        this._highlights = value;
+    }
+
+    get highlights() {
+        return this._highlights
+    }
+
     set languages(value) {
         this._languages = value;
     }
@@ -239,7 +247,8 @@ export default class User {
      * @return {{
      * color:string,
      * template:string,
-     * templateSettings:Object
+     * templateSettings:Object,
+     * modules : string[]
      * }}
      */
     get settings() {
@@ -274,6 +283,7 @@ export default class User {
      * @param {[Object]} educations
      * @param {[Object]} licenses
      * @param {[String]} languages
+     * @param {[String]} highlights
      * @param {Object} settings
      * @param avatar
      *
@@ -301,6 +311,7 @@ export default class User {
                     educations,
                     licenses,
                     languages,
+                    highlights,
                     settings,
                     avatar
                 }) {
@@ -326,11 +337,12 @@ export default class User {
         this._educations = educations
         this._licenses = licenses
         this._languages = languages
+        this._highlights = highlights
         this._avatar = avatar
         this._settings = settings
 
         if (this._settings.templateSettings === undefined){
-            this._settings.templateSettings = {c1:["basic", "contact","skills","languages"],c2:["about","experiences","educations","licenses"]}
+            this._settings.templateSettings = {c1:["basic", "contact","skills","languages"],c2:["about","highlights","experiences","educations","licenses"]}
         }
 
     }
