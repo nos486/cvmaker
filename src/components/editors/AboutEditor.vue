@@ -1,6 +1,7 @@
 <template>
   <EditDialog ref="dialog" title="About" :color="user.settings.color" v-on:show="show" v-on:save="save">
     <v-textarea label="About" v-model="about" :color="user.settings.color" rows="8" no-resize hide-details></v-textarea>
+    <small><a href="https://guides.github.com/features/mastering-markdown/" target="_blank">markdown</a> supported.</small>
   </EditDialog>
 </template>
 
