@@ -160,6 +160,18 @@ export default {
                 })
             })
         },
+        updatePassword(context, data) {
+            context.commit("overlayShow")
+            return new Promise((resolve, reject) => {
+                axios.post(`${config.apiUrl}/user/password`, data).then((response) => {
+                    context.commit("overlayHide")
+                    resolve(response)
+                }).catch(err => {
+                    context.commit("overlayHide")
+                    reject(err)
+                })
+            })
+        },
         uploadAvatar(context, formData) {
             context.commit("overlayShow")
             return new Promise((resolve, reject) => {

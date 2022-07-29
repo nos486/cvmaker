@@ -3,7 +3,7 @@
     <v-row justify="center" align="stretch">
       <SegmentColumn class="col-sm-5 col-lg-4 d-flex flex-column grey lighten-3" :template-settings="user.settings.templateSettings" name="c1">
         <div class="mt-8"></div>
-        <EmailVerifier class="mt-10" v-if="editable" :user="$store.getters.user"></EmailVerifier>
+<!--        <EmailVerifier class="mt-10" v-if="editable" :user="$store.getters.user"></EmailVerifier>-->
         <Segment v-for="(item,index) in user.settings.templateSettings.c1" :key="index" :user="user" :editable="editable" :name="item" parent="c1" class="mt-10">
           <template v-slot:overlay>
             <BasicEditor v-if="item === 'basic'" :user="user"></BasicEditor>
@@ -97,7 +97,6 @@ export default {
   components: {
     HighlightEditor,
     Highlights,
-    EmailVerifier,
     SegmentColumn,
     LicensesEditor,
     ExperiencesEditor,

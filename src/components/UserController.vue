@@ -1,6 +1,7 @@
 <template>
   <div v-if="user != null">
     <UserSettings ref="userSettings" :user="user" ></UserSettings>
+    <PasswordChanger ref="passwordChanger" :user="user"></PasswordChanger>
     <v-menu offset-y content-class="mt-2">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="cyan" icon x-large v-bind="attrs" v-on="on">
@@ -28,6 +29,14 @@
             </v-list-item-content>
           </v-list-item>
 
+          <v-list-item link @click="$refs.passwordChanger.show()">
+            <v-list-item-icon>
+              <v-icon>mdi-lock-reset</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Reset Password</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
           <v-list-item link @click="logoutClicked">
             <v-list-item-icon>
@@ -51,9 +60,10 @@
 import User from "@/models/User.model";
 import UserSettings from "@/components/UserSettings";
 import Avatar from "@/components/ui/Avatar";
+import PasswordChanger from "@/components/PasswordChanger";
 export default {
   name: "UserController",
-  components: {Avatar, UserSettings},
+  components: {PasswordChanger, Avatar, UserSettings},
   data: () => ({
 
   }),
